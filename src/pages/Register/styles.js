@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Dimensions } from "react-native";
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/FontAwesome';
 
 const { height, width } = Dimensions.get('window');
 
@@ -35,14 +35,18 @@ export const Circular = styled.View`
     shadow-opacity: 0.3;
     shadow-radius: 4.65px;
 `
-export const Cam = styled(Ionicons)`
+export const CameraIcon = styled(Ionicons)`
     font-size: 37px;
     color: #606060;
 `
+    name="camera"
+    
+
 export const InputView = styled.View`
     height: ${height * .42}px;
     justify-content: flex-end;
     gap: 20px;
+   
 `
 export const Input = styled.TextInput`
     font-family: 'Poppins-Medium';
