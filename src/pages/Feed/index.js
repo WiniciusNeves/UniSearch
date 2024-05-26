@@ -1,17 +1,17 @@
 import React from "react";
-import { ScrollView, Image, View } from "react-native";
+import { Image, View } from "react-native";
 import {
-  Body, ImageView, Input, Text, Container, Element, Button,
-  Seguindo, Quadrado, Bola, Recente, Retangulo, Menu, Icone,
-  ButtonPost, TextPost,
+  Body, ImageView, Icone, Input, Text, Container, Element, Button, ScrollView, ScrollViewBaixo, Quadrado, Bola
+  , Retangulo, Recentes, Menu, ButtonPost, TextPost
 } from "./styles";
 import { useNavigation } from "@react-navigation/native";
+import { TEXT } from "@sequelize/core/_non-semver-use-at-your-own-risk_/abstract-dialect/data-types.js";
 
 const Feed = () => {
   const navigation = useNavigation();
 
   return (
-    <ScrollView>
+    <Body>
       <ImageView>
         <Image
           source={require('../../assets/images/unicuritiba.png')}
@@ -19,10 +19,11 @@ const Feed = () => {
           resizeMode="cover"
         />
       </ImageView>
-      <Body>
-        <Input placeholder="Pesquisar..." />
-        <Icone name="search" size={25} color="#00345C" style={{ position: 'absolute', right: 60, top: 275 }} />
-
+      <View>
+        <Input placeholder="Clique para pesquisar..." style={{ textAlign: 'left', paddingLeft: 20 }} />
+        <Icone name="search" size={25} color="#00345C" style={{ position: 'absolute', right: 45, top: -135, color: '#35B6B4' }} />
+      </View>
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{ flexDirection: 'row' }}>
         <Container>
           <Button onPress={() => navigation.navigate('Aviso')}>
             <Element activeOpacity={0.5} style={{ backgroundColor: '#B5DEDD' }}>
@@ -30,7 +31,7 @@ const Feed = () => {
             </Element>
           </Button>
           <Button onPress={() => navigation.navigate('Comodidade')}>
-            <Element activeOpacity={0.5} style={{ backgroundColor: '#B6B5DE' }}>
+            <Element activeOpacity={0.5} style={{ backgroundColor: '#A09FC3' }}>
               <Text>#Comodidade</Text>
             </Element>
           </Button>
@@ -39,61 +40,74 @@ const Feed = () => {
               <Text>#Atletica</Text>
             </Element>
           </Button>
+          <Button onPress={() => navigation.navigate('Eventos')}>
+            <Element activeOpacity={0.5} style={{ backgroundColor: '#FFE55D' }}>
+              <Text>#Eventos</Text>
+            </Element>
+          </Button>
         </Container>
-        <Seguindo>
-          <Text style={{ fontWeight: 'bold', color: '#00345C', fontSize: 17 }}>
-            Seguindo
-          </Text>
+      </ScrollView>
+
+
+      <ScrollViewBaixo verfical={true} showsVerticalScrollIndicator={false} contentContainerStyle={{ flexDirection: 'column' }}>
+        <Text style={{ color: '#00345C', fontWeight: 'bold', fontSize: 20, marginLeft: 20, }}>
+          Seguindo
+        </Text>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{ flexDirection: 'row' }} style={{ position: 'relative', top: 1, left: -20, maxWidth: 9999 }}>
           <Quadrado>
-            <ImageView>
-              <Text style={{ fontWeight: '600', color: '#00345C', fontSize: 15, marginLeft: 10 }}>
-                images
-              </Text>
-            </ImageView>
-            <Text style={{ fontWeight: '600', color: '#00345C', fontSize: 15, marginLeft: 10 }}>
+            <Text style={{ fontWeight: '600', color: '#00345C', fontSize: 15, marginLeft: 50, marginTop: 10 }}>
+              images
+            </Text>
+            <Text style={{ fontWeight: '600', color: '#00345C', fontSize: 15, position: 'absolute', top: 190, left: 20 }}>
               Titulo
             </Text>
-            <Bola />
-            <Text style={{ fontWeight: '600', color: '#00345C', fontSize: 15, marginLeft: 60 }}>
+            <Text style={{ fontWeight: '600', color: '#00345C', fontSize: 15, position: 'absolute', top: 240, left: 80 }}>
               nome de usuario
             </Text>
-            <Text style={{ fontWeight: '600', color: '#9397A0', fontSize: 15, marginLeft: 60 }}>
+            <Text style={{ fontWeight: '600', color: '#9397A0', fontSize: 15, position: 'absolute', top: 260, left: 80 }}>
               00/00/0000
             </Text>
+            <Bola />
           </Quadrado>
-        </Seguindo>
+          <Quadrado>
+            <Text style={{ fontWeight: '600', color: '#00345C', fontSize: 15, marginLeft: 50, marginTop: 10 }}>
+              images
+            </Text>
+            <Text style={{ fontWeight: '600', color: '#00345C', fontSize: 15, position: 'absolute', top: 190, left: 20 }}>
+              Titulo
+            </Text>
+            <Text style={{ fontWeight: '600', color: '#00345C', fontSize: 15, position: 'absolute', top: 240, left: 80 }}>
+              nome de usuario
+            </Text>
+            <Text style={{ fontWeight: '600', color: '#9397A0', fontSize: 15, position: 'absolute', top: 260, left: 80 }}>
+              00/00/0000
+            </Text>
+            <Bola />
+          </Quadrado>
+        </ScrollView>
 
-        <Recente>
-          <Text style={{ fontWeight: 'bold', color: '#00345C', fontSize: 17 }}>
+        <Recentes>
+
+          <Text style={{ fontSize: 20, color: '#00345C', marginLeft: 20, marginTop: 40, fontWeight: 'bold' }}>
             Recentes
           </Text>
           <Retangulo>
-            <ImageView>
-              <Text style={{ fontWeight: '600', color: '#00345C', fontSize: 15, position: 'absolute', left: 20 }}>
-                images
-              </Text>
-            </ImageView>
 
-            <Text style={{
-              fontWeight: '600', color: '#00345C', fontSize: 15, position: 'absolute', left: 200, top: 50
-            }}>
-              texto
+            <Text style={{ fontSize: 20, color: '#00345C', fontWeight: 'bold' }}>
+              images
             </Text>
-          </Retangulo>
-        </Recente>
 
-        <Menu>
-          <Icone name="home" size={30} color="#00345C" />
-          <Button onPress={() => navigation.navigate('CriarPost')}>
-            <ButtonPost>
-              <Icone name="edit" size={30} color="#00345C" style={{ position: 'absolute', left: 10 }} />
-              <TextPost>Criar Post</TextPost>
-            </ButtonPost>
-          </Button>
-          <Icone name="book" size={30} color="#00345C" />
-        </Menu>
-      </Body>
-    </ScrollView>
+            <Text style={{ fontSize: 20, color: '#00345C', marginLeft: 50, fontWeight: 'bold', alignItems: 'center' }}>
+              Titulo
+            </Text>
+
+          </Retangulo>
+        </Recentes>
+      </ScrollViewBaixo>
+      <Menu>
+        
+      </Menu>
+    </Body >
   );
 };
 
