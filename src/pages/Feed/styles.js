@@ -122,10 +122,38 @@ export const Retangulo = styled.View`
 `;
 
 export const Menu = styled.View`
-background-color: black;
+background-color: #DAEDFC;
   width: ${width * 1}px;
   height: ${height * 0.15}px;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
+  align-items: start;
+  justify-content: space-between;
+  flex-direction: row;
+
   z-index: 3;
+`;
+
+export const ButtonPost = styled.View`
+  width: ${width * 0.5}px;
+  height: ${height * 0.04}px;
+  align-items: center;
+  justify-content: left;
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  background-color: #35B6B4;
+  margin-top: ${height * 0.02}px;
+
+
+`;
+
+
+export const TextPost = styled.Text`
+  font-family: 'Poppins-SemiBold';
+  font-size: 20px;
+  color: white;
+  margin-left: 10px;
+  position: absolute;
+  left: 60px;
 `;

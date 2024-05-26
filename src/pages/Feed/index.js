@@ -105,7 +105,18 @@ const Feed = () => {
         </Recentes>
       </ScrollViewBaixo>
       <Menu>
-        
+        <Button onPress={() => navigation.navigate('Feed')}>
+          <Icone name="home" style={{ marginTop: 20, marginLeft: 20, fontSize: 40 }} />
+        </Button>
+        <Button onPress={() => navigation.navigate('CriarPost')}>
+          <ButtonPost>
+            <Icone name="edit" size={30} color="#00345C" style={{ position: 'absolute', left: 10 }} />
+            <TextPost>Criar Post</TextPost>
+          </ButtonPost>
+        </Button>
+        <Button onPress={() => navigation.navigate('Menu')}>
+          <Icone name="book" style={{ marginTop: 20, marginRight: 20, fontSize: 40 }} />
+        </Button>
       </Menu>
     </Body >
   );
