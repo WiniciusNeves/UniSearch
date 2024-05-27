@@ -25,22 +25,22 @@ const Feed = () => {
       </View>
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{ flexDirection: 'row' }}>
         <Container>
-          <Button onPress={() => navigation.navigate('Aviso')}>
+          <Button onPress={() => navigation.navigate('AvisoFeed')}>
             <Element activeOpacity={0.5} style={{ backgroundColor: '#B5DEDD' }}>
               <Text>#aviso</Text>
             </Element>
           </Button>
-          <Button onPress={() => navigation.navigate('Comodidade')}>
+          <Button onPress={() => navigation.navigate('ComodidadeFeed')}>
             <Element activeOpacity={0.5} style={{ backgroundColor: '#A09FC3' }}>
               <Text>#Comodidade</Text>
             </Element>
           </Button>
-          <Button onPress={() => navigation.navigate('Atletica')}>
+          <Button onPress={() => navigation.navigate('AtleticaFeed')}>
             <Element activeOpacity={0.5} style={{ backgroundColor: '#DECBB5' }}>
               <Text>#Atletica</Text>
             </Element>
           </Button>
-          <Button onPress={() => navigation.navigate('Eventos')}>
+          <Button onPress={() => navigation.navigate('EventosFeed')}>
             <Element activeOpacity={0.5} style={{ backgroundColor: '#FFE55D' }}>
               <Text>#Eventos</Text>
             </Element>
