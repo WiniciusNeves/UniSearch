@@ -20,7 +20,7 @@ const Register = () => {
                 <Text style={{ position: 'absolute', top: 100, color: Colors.black }}>Crie seu post, para compartilhar suas experiências</Text>
                 <InputView>
                     <Input placeholder="Titulo" />
-                    <Input placeholder="Sobre" style={{ height: 100 }} />
+                    <Input placeholder="Sobre" style={{ height: 200, textAlign: 'left-top' }} />
                     <Input placeholder="Categoria" />
                 </InputView>
                 <Button>

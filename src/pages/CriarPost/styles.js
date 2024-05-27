@@ -44,6 +44,8 @@ export const InputView = styled.View`
     height: ${height * .42}px;
     justify-content: flex-end;
     gap: 20px;
+    position: absolute;
+    top: ${height * .10}px;
    
 `
 export const Input = styled.TextInput`
@@ -64,6 +66,8 @@ export const Button = styled.TouchableOpacity`
     margin-top: 50px;
     border-radius: 10px;
     background-color: #35B6B4;
+    position: absolute;
+    top: ${height * .50}px;
 `
 export const ButtonText = styled.Text`
     font-family: 'Poppins-SemiBold';

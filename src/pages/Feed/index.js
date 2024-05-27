@@ -21,7 +21,7 @@ const Feed = () => {
       </ImageView>
       <View>
         <Input placeholder="Clique para pesquisar..." style={{ textAlign: 'left', paddingLeft: 20 }} />
-        <Icone name="search" size={25} color="#00345C" style={{ position: 'absolute', right: 45, top: -135, color: '#35B6B4' }} />
+        <Icone name="search" size={25} color="#00345C" style={{ position: 'absolute', right: 45, top: -135, color: '#35B6B4' }} onPress={() => navigation.navigate('Pesquisa')} />
       </View>
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{ flexDirection: 'row' }}>
         <Container>
@@ -102,6 +102,7 @@ const Feed = () => {
             </Text>
 
           </Retangulo>
+          
         </Recentes>
       </ScrollViewBaixo>
       <Menu>

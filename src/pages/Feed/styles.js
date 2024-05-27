@@ -6,9 +6,8 @@ const { height, width } = Dimensions.get('window');
 
 
 export const Body = styled.View`
-  margin : 0px;
-  padding : 0px;
-  height: ${height * 1}px;
+  width: ${width * 1}px;
+  height: ${height * 0.9}px;
   background-color: #E2E2E2;
 `;
 
@@ -43,11 +42,12 @@ export const ScrollView = styled.ScrollView`
   position: absolute;
   top: ${height * .2}px;
   left: ${width * 0.05}px;
-  right: ${width * 0.02}px;
+
   overflow: scroll;
   flex: 1;
   paddingHorizontal: ${width * 0.05}px;
   max-width: ${width * .9}px;
+  z-index: 1;
 `
 export const Container = styled.View`
   flex-direction: row;
@@ -77,14 +77,15 @@ export const Element = styled.View`
 `
 
 export const ScrollViewBaixo = styled.ScrollView` 
- position: fixed;
-  top: ${height * -.05}px;
-  height: ${height * .9}px;
+  position: fixed;
+  bottom: 60px;
+  left: 0;
+  height: px;
   width: ${width * 1}px;
-
+  background-color: #E2E2E2;
   overflow: scroll;
   flex: 1;
-
+ 
 `
 
 export const Quadrado = styled.View`
@@ -117,23 +118,21 @@ export const Retangulo = styled.View`
   background-color: #E4ECF2;
   align-items: center;
   justify-content: center;
-  border: 2px solid #E4ECF2;
   flex-direction: row;
 `;
 
 export const Menu = styled.View`
-background-color: #DAEDFC;
+  background-color: #D5E8F7;
   width: ${width * 1}px;
-  height: ${height * 0.15}px;
+  height: ${height * 0.32}px;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
-  align-items: start;
+  align-items: flex-start;
   justify-content: space-between;
   flex-direction: row;
-
-  z-index: 3;
+  position: absolute;
+  bottom: -260px;
 `;
-
 export const ButtonPost = styled.View`
   width: ${width * 0.5}px;
   height: ${height * 0.04}px;
