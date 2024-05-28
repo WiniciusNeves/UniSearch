@@ -39,9 +39,6 @@ export const CameraIcon = styled(Ionicons)`
     font-size: 37px;
     color: #606060;
 `
-    name="camera"
-    
-
 export const InputView = styled.View`
     height: ${height * .42}px;
     justify-content: flex-end;

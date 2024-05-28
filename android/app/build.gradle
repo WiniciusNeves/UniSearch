@@ -27,9 +27,7 @@ def enableProguardInReleaseBuilds = false
 def jscFlavor = 'org.webkit:android-jsc:+'
 
 // Configuração dos ícones de vetor
-project.ext.vectoricons = [
-    iconFontNames: ['FontAwesome.ttf', 'Ionicons.ttf', 'EvilIcons.ttf', 'Feather.ttf'] // Especificar arquivos de fonte
-]
+
 
 // Aplicar o script fonts.gradle
 apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle")
