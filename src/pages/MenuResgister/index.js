@@ -23,7 +23,7 @@ const MenuRegister = () => {
                 </BackButton>
                 <ImagenView>
                     <Image
-                        source={require('../../assets/images/Create.png')}  style={{ width: 280, height: 280 , objectFit: 'cover'}}/>
+                        source={require('../../../assets/images/Creante.png')}  style={{ width: 280, height: 280, resizeMode: 'cover' }}/>
                 </ImagenView>
             </Body>
             <Body2>
