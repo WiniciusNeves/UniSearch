@@ -7,6 +7,7 @@ const { height, width } = Dimensions.get('window');
 export const Body = styled.View`
     height: ${height * .5}px;
     background-color: #E2E2E2;
+
 `
 export const Body2 = styled.View`
     width: 100%; 

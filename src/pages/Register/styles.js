@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Dimensions } from "react-native";
 import Ionicons from 'react-native-vector-icons/FontAwesome';
 
+
 const { height, width } = Dimensions.get('window');
 
 export const Body = styled.View`
@@ -10,7 +11,7 @@ export const Body = styled.View`
 `
 export const Body2 = styled.View`
     width: 100%; 
-    height: ${height * .72}px;
+    height: ${height * .78}px;
     border-top-left-radius: 34px;
     border-top-right-radius: 34px;
     align-items: center;
@@ -19,28 +20,34 @@ export const Body2 = styled.View`
     z-index: 1;
     background-color: white;
 `
-export const Circular = styled.View`
+export const Circular = styled.TouchableOpacity`
     height: 154px;
     width: 154px;
     align-items: center;
     justify-content: center;
+    border-radius: 77px;
+    elevation: 10;
+    background-color: white;
     position: absolute;
     top: -70px;
-    z-index: 0;
+    z-index: 1;
+`
+export const ImageInput = styled.Image`
+    height: 154px;
+    width: 154px;
+    align-self: center;
+    justify-content: center;
+    position: absolute;
+    top: -70px;
     background-color: white;
-    border-radius: 100px;
-    elevation: 10; 
-    shadow-color: #000;
-    shadow-offset: 0px 4px;
-    shadow-opacity: 0.3;
-    shadow-radius: 4.65px;
+    border-radius: 77px;
 `
 export const CameraIcon = styled(Ionicons)`
     font-size: 37px;
     color: #606060;
 `
 export const InputView = styled.View`
-    height: ${height * .42}px;
+    height: ${height * .48}px;
     justify-content: flex-end;
     gap: 20px;
    

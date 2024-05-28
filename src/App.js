@@ -7,6 +7,8 @@ import Register from './pages/Register';
 import Feed from './pages/Feed';
 import Menu from './pages/Menu';
 import MenuRegister from './pages/MenuResgister';
+import Perfil from './pages/Perfil';
+
 
 
 const Stack = createStackNavigator();
@@ -22,6 +24,7 @@ function App() {
         <Stack.Screen name="Feed" component={Feed} options={{ headerShown: false }} />
         <Stack.Screen name="MenuResgister" component={MenuRegister} options={{ headerShown: false }} />
         <Stack.Screen name="Menu" component={Menu} options={{ headerShown: false }} />
+        <Stack.Screen name="Perfil" component={Perfil} options={{ headerShown: false }} />
 
       </Stack.Navigator>
     </NavigationContainer>

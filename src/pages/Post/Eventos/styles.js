@@ -26,16 +26,12 @@ export const Circular = styled.TouchableOpacity`
     width: 154px;
     align-items: center;
     justify-content: center;
+    border-radius: 77px;
+    elevation: 10;
+    background-color: white;
     position: absolute;
     top: -70px;
     z-index: 1;
-    background-color: white;
-    border-radius: 100px;
-    elevation: 10;
-    shadow-color: #000;
-    shadow-offset: 0px 4px;
-    shadow-opacity: 0.3;
-    shadow-radius: 4.65px;
 `;
 
 export const Icones = styled(Icon)`

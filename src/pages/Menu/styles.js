@@ -42,6 +42,7 @@ export const Apa = styled.View`
     background-color: white;
     border-top-left-radius: 34px;
     border-top-right-radius: 34px;
+    elevation: 22;
 `
 
 export const Text = styled.Text`

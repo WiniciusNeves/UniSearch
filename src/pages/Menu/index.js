@@ -34,7 +34,7 @@ const Menu = () => {
                 <Button style={{ position: 'absolute', right: 45, top: 25 }} onPress={() => navigation.navigate('Config')}>
                     <Icone name="cog" color="#00345C" style={{ color: '#35B6B4' }} />
                 </Button>
-                <Button style={{ position: 'absolute', right: 150, top: 25 }} onPress={() => navigation.navigate('Perfil')}>
+                <Button style={{ position: 'absolute', right: 130, top: 25 }} onPress={() => navigation.navigate('Perfil')}>
                     <Icone name="user-circle-o" color="#00345C" style={{ color: '#35B6B4' }} />
                 </Button>
                 <Button style={{ position: 'absolute', left: 150, top: 25 }} onPress={() => navigation.navigate('Suporte')}>
