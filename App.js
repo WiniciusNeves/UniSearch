@@ -7,9 +7,10 @@ import Register from './src/pages/Register';
 import Feed from './src/pages/Feed';
 import Menu from './src/pages/Menu';
 import MenuRegister from './src/pages/MenuResgister';
-import Comodidade from './src/pages/Comodidade';
-import Atletica from './src/pages/Atletica';
-import Eventos from './src/pages/Eventos';
+import Comodidade from './src/pages/Post/Comodidade';
+import Atletica from './src/pages/Post/Atletica';
+import Eventos from './src/pages/Post/Eventos';
+import Aviso from './src/pages/Post/Aviso';
 
 
 const Stack = createStackNavigator();
@@ -28,6 +29,7 @@ function App() {
         <Stack.Screen name="Atletica" component={Atletica} options={{ headerShown: false }} />
         <Stack.Screen name="Menu" component={Menu} options={{ headerShown: false }} />
         <Stack.Screen name="Eventos" component={Eventos} options={{ headerShown: false }} />
+        <Stack.Screen name="Aviso" component={Aviso} options={{ headerShown: false }} />
 
       </Stack.Navigator>
     </NavigationContainer>

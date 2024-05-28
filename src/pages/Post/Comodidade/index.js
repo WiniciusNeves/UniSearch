@@ -44,9 +44,9 @@ const Comodidade = () => {
                 </Circular>
                 <Text style={{ position: 'absolute', top: 100, color: Colors.black }}>Escreve os escropo do seu comodidade</Text>
                 <InputView>
-                    <Input placeholder="Titulo" />
-                    <Input placeholder="Descricão" />
-                    <Input placeholder="Email de Contato" />
+                    <Input placeholder="Titulo" id="title" />
+                    <Input placeholder="Descricão" id="description" />
+                    <Input placeholder="Email de Contato" id="email" />
                 </InputView>
                 <Button>
                     <ButtonText>Cadastrar</ButtonText>
