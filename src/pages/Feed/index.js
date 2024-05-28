@@ -29,26 +29,10 @@ export default function Feed() {
       </View>
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{ flexDirection: 'row' }}>
         <Container>
-          <Button onPress={() => navigation.navigate('Aviso')}>
-            <Element activeOpacity={0.5} style={{ backgroundColor: '#B5DEDD' }}>
-              <Text>#aviso</Text>
-            </Element>
-          </Button>
-          <Button onPress={() => navigation.navigate('Comodidade')}>
-            <Element activeOpacity={0.5} style={{ backgroundColor: '#A09FC3' }}>
-              <Text>#Comodidade</Text>
-            </Element>
-          </Button>
-          <Button onPress={() => navigation.navigate('Atletica')}>
-            <Element activeOpacity={0.5} style={{ backgroundColor: '#DECBB5' }}>
-              <Text>#Atletica</Text>
-            </Element>
-          </Button>
-          <Button onPress={() => navigation.navigate('Eventos')}>
-            <Element activeOpacity={0.5} style={{ backgroundColor: '#FFE55D' }}>
-              <Text>#Eventos</Text>
-            </Element>
-          </Button>
+          <ButtonElement backgroundColor={'#B5DEDD'} text={'#avisos'}/>
+          <ButtonElement backgroundColor={'#A09FC3'} text={'#eventos'}/>
+          <ButtonElement backgroundColor={'#DECBB5'} text={'#comodidades'}/>
+          <ButtonElement backgroundColor={'#B5DEDD'} text={'#atléticas'}/>
         </Container>
       </ScrollView>
       <ScrollViewBaixo verfical={true} showsVerticalScrollIndicator={false} contentContainerStyle={{ flexDirection: 'column' }}>
