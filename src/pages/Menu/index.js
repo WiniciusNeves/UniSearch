@@ -41,11 +41,9 @@ const Menu = () => {
                     <Icone name="question-circle-o" color="#00345C" style={{ color: '#35B6B4' }} />
                 </Button>
                 <Button style={{ position: 'absolute', left: 50, top: 25 }} onPress={() => navigation.navigate('Logout')}>
-
                     <Icone2 name="exit-outline" color="#00345C" style={{ color: '#35B6B4' }} />
                 </Button>
                 <Button style={{ position: 'absolute', right: 45, top: 90 }} onPress={() => navigation.navigate('Feed')}>
-
                     <Icone name="chevron-down" color="#00345C" style={{ color: '#35B6B4' }} />
                 </Button>
             </LeadMore>
