@@ -17,7 +17,6 @@ export const Container = styled.View`
     margin : 0px;
     padding : 0px;
     align-items: start;
-    justify-content: center;
     Flex-direction: row;
 `
 export const Text = styled.Text`

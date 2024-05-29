@@ -8,6 +8,7 @@ import Feed from './pages/Feed';
 import Menu from './pages/Menu';
 import MenuRegister from './pages/MenuResgister';
 import Perfil from './pages/Perfil';
+import Suporte from './pages/Suporte';
 
 
 
@@ -25,6 +26,9 @@ function App() {
         <Stack.Screen name="MenuResgister" component={MenuRegister} options={{ headerShown: false }} />
         <Stack.Screen name="Menu" component={Menu} options={{ headerShown: false }} />
         <Stack.Screen name="Perfil" component={Perfil} options={{ headerShown: false }} />
+        
+        <Stack.Screen name="Suporte" component={Suporte} options={{ headerShown: false }} />
+
 
       </Stack.Navigator>
     </NavigationContainer>
