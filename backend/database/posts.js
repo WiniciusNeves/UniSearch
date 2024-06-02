@@ -47,6 +47,14 @@ const Posts = connection.define('Posts', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    Situacao : {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    Categoria : {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
 }, {
     // Additional model options
     tableName: 'posts',
