@@ -16,18 +16,14 @@ const Auth = () => {
                 />
             </ImageView>
             <Body>
-                <Input placeholder="Email" placeholderTextColor="#626262" id="email"/>
-                <Input placeholder="Senha" placeholderTextColor="#626262" id="password"/>
-                <ForgotText>Esqueceu sua senha?</ForgotText>
-                <Button onPress={() => navigation.navigate('Feed')}>
+                <Input placeholder="Email" id="email" />
+                <Input placeholder="Senha" id="password" />
+                <Button onPress={() => navigation.goBack()}>
                     <ButtonText >Entrar</ButtonText>
-            </Button>
-            <RegisterButon>
-                <Text onPress={() => navigation.navigate('Register')}>Cadastre-se</Text>
-            </RegisterButon>
-        </Body >
+                </Button>
+            </Body >
         </>
-      );
-    }
+    );
+}
 
 export default Auth;

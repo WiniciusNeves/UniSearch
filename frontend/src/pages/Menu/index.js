@@ -17,29 +17,23 @@ const Menu = () => {
                 />
             </ImageView>
             <Apa>
-
-                <Button onPress={() => navigation.navigate('Notificaçao')}>
+                <Button onPress={() => navigation.navigate('Admin')}>
                     <ButtonText>
-                        <Text style={{ color: '#333333', fontFamily: 'Poppins-SemiBold', fontSize: 16, fontWeight: 'bold' }}>Notificaçao</Text>
-                    </ButtonText>
-                </Button>
-                <Button>
-
-                    <ButtonText onPress={() => navigation.navigate('Admin')}>
                         <Text style={{ color: '#333333', fontFamily: 'Poppins-SemiBold', fontSize: 16, fontWeight: 'bold' }}>Admin</Text>
                     </ButtonText>
                 </Button>
             </Apa>
             <LeadMore>
-                <Button onPress={() => navigation.navigate('Feed')}>
+                <Button style={{ position: 'absolute', left: 50, top: 25 }} onPress={() => navigation.navigate('Logout')}>
                     <Icone2 name="exit-outline" color="#00345C" style={{ color: '#35B6B4' }} />
-                </Button>  
-                <Button onPress={() => navigation.navigate('Suporte')}>
-                    <Icone name="question-circle-o" color="#00345C" style={{ color: '#35B6B4' }} />
                 </Button>
-                <Button onPress={() => navigation.navigate('Config')}>
-                    <Icone name="cog" color="#00345C" style={{ color: '#35B6B4' }} />
-                </Button>      
+                <Button style={{ position: 'absolute', right: 200, top: 25 }} onPress={() => navigation.navigate('Auth')}>
+                    <Icone name="user-circle-o" color="#00345C" style={{ color: '#35B6B4' }} />
+                </Button>
+
+                <Button style={{ position: 'absolute', right: 45, top: 90 }} onPress={() => navigation.navigate('Feed')}>
+                    <Icone name="chevron-down" color="#00345C" style={{ color: '#35B6B4' }} />
+                </Button>
             </LeadMore>
         </Body >
     );

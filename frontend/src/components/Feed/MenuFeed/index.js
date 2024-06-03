@@ -8,7 +8,7 @@ const MenuFeed = () => {
             <Button onPress={() => navigation.navigate('Feed')}>
                 <HomeIcon name="home" />
             </Button>
-            <Button onPress={() => navigation.navigate('MenuResgister')}>
+            <Button onPress={() => navigation.navigate('MenuRegister')}>
                 <ButtonPost>
                     <Icone name="edit" style={{ position: 'absolute', left: 30, fontSize: 20, color: 'white' }} />
                     <TextPost>escrever post</TextPost>
