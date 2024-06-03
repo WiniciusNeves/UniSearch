@@ -56,7 +56,7 @@ export const Button = styled.TouchableOpacity`
 export const LeadMore = styled.View`
     background-color: #E4ECF2;
     width: ${width * 1}px;
-    height: ${height * 0.13}px;
+    height: ${height * 0.20}px;
     position: absolute;
     bottom: -80px;
     display: flex;
