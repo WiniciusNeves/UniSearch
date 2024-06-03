@@ -44,7 +44,6 @@ export const Apa = styled.View`
     border-top-right-radius: 34px;
     elevation: 22;
 `
-
 export const Text = styled.Text`
     font-family: 'Poppins-SemiBold';
     font-size: 16px;
@@ -52,29 +51,24 @@ export const Text = styled.Text`
     opacity: 0.43;
 `
 export const Button = styled.TouchableOpacity`
-    
-`;
-
+    margin-top: 20px;
+`
 export const LeadMore = styled.View`
     background-color: #E4ECF2;
     width: ${width * 1}px;
-    height: ${height * 0.20}px;
+    height: ${height * 0.13}px;
     position: absolute;
     bottom: -80px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-around;
+    align-items: flex-start;
     flex-direction: row;
     z-index: 1;
     border-top-left-radius: 34px;
     border-top-right-radius: 34px;
-
-
-`;
-
-
+`
 export const ButtonText = styled.View`
-display: block;
+    display: block;
     height: 57px;
     width: ${width * .8}px;
     align-items: center;
@@ -82,4 +76,4 @@ display: block;
     margin-top: 20px;
     border-radius: 40px;
     border: 2px solid #000000;    
-`;
+`

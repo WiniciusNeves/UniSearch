@@ -44,10 +44,16 @@ const Comodidade = () => {
                 </Circular>
                 <Text style={{ position: 'absolute', top: 100, color: Colors.black }}>Escreve os escropo do seu comodidade</Text>
                 <InputView>
+<<<<<<< HEAD:frontend/src/pages/Post/Atletica/index.js
                     <Input placeholder="Titulo" id="title" />
                     <Input placeholder="Descricão" id="description"/>
                     <Input placeholder="Local" id="local"/>
                     <Input placeholder="Video(Opcional)" id="local"/>
+=======
+                    <Input placeholder="Nome" placeholderTextColor="#626262" id="name" />
+                    <Input placeholder="Email" placeholderTextColor="#626262" id="email" />
+                    <Input placeholder="Senha" placeholderTextColor="#626262" id="password" />
+>>>>>>> c45a067c8482f1501b499673ae757d70f306f599:src/pages/Register/index.js
                 </InputView>
                 <Button>
                     <ButtonText>Cadastrar</ButtonText>
