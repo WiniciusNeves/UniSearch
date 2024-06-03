@@ -41,9 +41,9 @@ const Register = () => {
                 </Circular>
                 <Text style={{ position: 'absolute', top: 100, color: Colors.black, textAlign: 'center', width: 400 }}>Faça o seu cadastro, para compartilhar suas experiências</Text>
                 <InputView>
-                    <Input placeholder="Nome" id="name" />
-                    <Input placeholder="Email" id="email" />
-                    <Input placeholder="Senha" id="password" />
+                    <Input placeholder="Nome" placeholderTextColor="#626262" id="name" />
+                    <Input placeholder="Email" placeholderTextColor="#626262" id="email" />
+                    <Input placeholder="Senha" placeholderTextColor="#626262" id="password" />
                 </InputView>
                 <Button>
                     <ButtonText>Cadastrar</ButtonText>

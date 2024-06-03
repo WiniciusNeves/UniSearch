@@ -22,7 +22,6 @@ export const Input = styled.TextInput`
     border-radius: 10px;
     padding-left: 20px;
     background-color: #E4ECF2;
-    color: #626262;
 `
 export const ForgotText = styled.Text`
     font-family: 'Poppins-SemiBold';

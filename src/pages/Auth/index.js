@@ -16,8 +16,8 @@ const Auth = () => {
                 />
             </ImageView>
             <Body>
-                <Input placeholder="Email" id="email"/>
-                <Input placeholder="Senha" id="password"/>
+                <Input placeholder="Email" placeholderTextColor="#626262" id="email"/>
+                <Input placeholder="Senha" placeholderTextColor="#626262" id="password"/>
                 <ForgotText>Esqueceu sua senha?</ForgotText>
                 <Button onPress={() => navigation.navigate('Feed')}>
                     <ButtonText >Entrar</ButtonText>
