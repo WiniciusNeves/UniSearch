@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Body, Body2, Circular, Input, InputView, CameraIcon, Button, ButtonText, BackButton, Text } from "./styles";
+import { Body, Body2, Circular, Input, InputView, 
+    CameraIcon, Button, ButtonText, BackButton, Text 
+} from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { launchImageLibrary } from 'react-native-image-picker';
-import { Colors } from "react-native/Libraries/NewAppScreen";
-import { Image, StyleSheet, Alert } from "react-native";
+import { Image, Alert } from "react-native";
 
 const Register = () => {
     const navigation = useNavigation();
@@ -39,8 +40,11 @@ const Register = () => {
                         <CameraIcon name="camera" size={37} color="#00345C" />
                     )}
                 </Circular>
-                <Text style={{ position: 'absolute', top: 100, color: Colors.black, textAlign: 'center', width: 400 }}>Faça o seu cadastro, para compartilhar suas experiências</Text>
+            
                 <InputView>
+                <Text style={{ textAlign: 'center', width: 350}}>
+                    Faça o seu cadastro, para compartilhar suas experiências
+                </Text>
                     <Input placeholder="Nome" placeholderTextColor="#626262" id="name" />
                     <Input placeholder="Email" placeholderTextColor="#626262" id="email" />
                     <Input placeholder="Senha" placeholderTextColor="#626262" id="password" />

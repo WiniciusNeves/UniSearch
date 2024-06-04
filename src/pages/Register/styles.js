@@ -47,8 +47,9 @@ export const CameraIcon = styled(Ionicons)`
     color: #606060;
 `
 export const InputView = styled.View`
-    height: ${height * .48}px;
+    height: ${height * .53}px;
     justify-content: flex-end;
+    align-items: center;
     gap: 20px;
    
 `
