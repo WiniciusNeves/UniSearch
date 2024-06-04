@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Body, Body2, Circular, Input, InputView, Button, ButtonText, BackButton, Text, Icones } from "./styles";
+import { Body, Body2, Circular, Input, InputView, CameraIcon, Button, ButtonText, BackButton, Text } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { launchImageLibrary } from 'react-native-image-picker';
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { Image, StyleSheet, Alert } from "react-native";
 
-const Eventos = () => {
+const Register = () => {
     const navigation = useNavigation();
     const [imageUri, setImageUri] = useState(null);
 
@@ -29,43 +29,31 @@ const Eventos = () => {
 
     return (
         <>
-            <Body>
-                <BackButton onPress={() => navigation.navigate('Feed')}>
-                    <Icones name="angle-left" size={25} style={{ position: 'absolute', left: 17, top: 4, color: '#35B6B4' }} />
-                </BackButton>
-            </Body>
-            <Body2>
+
+            <Body />
+            <Body2 >
                 <Circular onPress={handleImagePicker}>
                     {imageUri ? (
                         <Image source={{ uri: imageUri }} style={styles.image} />
                     ) : (
-                        <Icones name="camera" size={37} color="#00345C" />
+                        <CameraIcon name="camera" size={37} color="#00345C" />
                     )}
                 </Circular>
-                <Text style={{ position: 'absolute', top: 100, color: Colors.black }}>Escreve os escropo do seu Eventos</Text>
-                <InputView showsVerticalScrollIndicator={false} >
-                    <Input placeholder="Titulo" id="title" />
-                    <Input placeholder="Descricão" id="description" />
-                    <Input placeholder="Email de Contato" id="email" />
-                    <Input placeholder="Data-inicial" id="dateI" />
-                    <Input placeholder="Data-Final" id="dateF" />
-                    <Input placeholder="Local" id="local" />
-                    <Input placeholder="Video(Opcional)" id="local" />
+                <Text style={{ position: 'absolute', top: 100, color: Colors.black, textAlign: 'center', width: 400 }}>Faça o seu cadastro, para compartilhar suas experiências</Text>
+                <InputView>
+                    <Input placeholder="Nome" placeholderTextColor="#626262" id="name" />
+                    <Input placeholder="Email" placeholderTextColor="#626262" id="email" />
+                    <Input placeholder="Senha" placeholderTextColor="#626262" id="password" />
                 </InputView>
-                <Button style={{ position: 'absolute', bottom: 50 }}>
+                <Button>
                     <ButtonText>Cadastrar</ButtonText>
                 </Button>
+                <BackButton>
+                    <Text onPress={() => navigation.navigate('Auth')}>Voltar?</Text>
+                </BackButton>
             </Body2>
         </>
     );
 }
 
-const styles = StyleSheet.create({
-    image: {
-        width: 100,
-        height: 100,
-        borderRadius: 50,
-    },
-});
-
-export default Eventos;
+export default Register;

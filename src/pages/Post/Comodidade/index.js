@@ -47,7 +47,6 @@ const Comodidade = () => {
                     <Input placeholder="Titulo" id="title" />
                     <Input placeholder="Descricão" id="description" />
                     <Input placeholder="Email de Contato" id="email" />
-                    <Input placeholder="Video(Opcional)" id="local"/>
                 </InputView>
                 <Button>
                     <ButtonText>Cadastrar</ButtonText>

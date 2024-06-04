@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Body, Body2, Circular, Input, InputView, Button, ButtonText, BackButton, Text, Icones } from "./styles";
 import { useNavigation } from "@react-navigation/native";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 import { launchImageLibrary } from 'react-native-image-picker';
+import { Colors } from "react-native/Libraries/NewAppScreen";
 import { Image, StyleSheet, Alert } from "react-native";
 
-const Comodidade = () => {
+const Eventos = () => {
     const navigation = useNavigation();
     const [imageUri, setImageUri] = useState(null);
 
@@ -42,20 +42,16 @@ const Comodidade = () => {
                         <Icones name="camera" size={37} color="#00345C" />
                     )}
                 </Circular>
-                <Text style={{ position: 'absolute', top: 100, color: Colors.black }}>Escreve os escropo do seu comodidade</Text>
-                <InputView>
-<<<<<<< HEAD:frontend/src/pages/Post/Atletica/index.js
+                <Text style={{ position: 'absolute', top: 100, color: Colors.black }}>Escreve os escropo do seu Eventos</Text>
+                <InputView showsVerticalScrollIndicator={false} >
                     <Input placeholder="Titulo" id="title" />
-                    <Input placeholder="Descricão" id="description"/>
-                    <Input placeholder="Local" id="local"/>
-                    <Input placeholder="Video(Opcional)" id="local"/>
-=======
-                    <Input placeholder="Nome" placeholderTextColor="#626262" id="name" />
-                    <Input placeholder="Email" placeholderTextColor="#626262" id="email" />
-                    <Input placeholder="Senha" placeholderTextColor="#626262" id="password" />
->>>>>>> c45a067c8482f1501b499673ae757d70f306f599:src/pages/Register/index.js
+                    <Input placeholder="Descricão" id="description" />
+                    <Input placeholder="Email de Contato" id="email" />
+                    <Input placeholder="Data-inicial" id="dateI" />
+                    <Input placeholder="Data-Final" id="dateF" />
+                    <Input placeholder="Local" id="local" />
                 </InputView>
-                <Button>
+                <Button style={{ position: 'absolute', bottom: 50 }}>
                     <ButtonText>Cadastrar</ButtonText>
                 </Button>
             </Body2>
@@ -71,4 +67,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Comodidade;
+export default Eventos;
