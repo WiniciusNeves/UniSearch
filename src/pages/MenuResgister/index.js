@@ -19,7 +19,7 @@ const MenuRegister = () => {
         <>
             <Body>
                 <BackButton onPress={() => navigation.goBack()}>
-                    <Icones name="angle-left" size={25} style={{ position: 'absolute', left: 17, top: 4, color: '#35B6B4' }} />
+                    <Icones name="angle-left" size={25} style={{ color: '#35B6B4' }} />
                 </BackButton>
                 <ImagenView>
                     <Image
