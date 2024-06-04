@@ -1,31 +1,53 @@
 import React from "react";
-import { Image } from "react-native";
-import { Body, Container, Text } from "./styles";
-
+import { Arrow, Container, Header, ViewBack, 
+    Title, TitleView, Info, InfoView, Body,
+    ViewIcons,
+    Phone,
+    Whatsapp,
+    IconsView,
+    InfoHour
+} from "./styles";
 import { useNavigation } from "@react-navigation/native";
-import MenuFeed from "../../components/Feed/MenuFeed";
-import { ScrollViewBaixo } from "../Feed/styles";
 
 
 const Suporte = () => {
     const navigation = useNavigation();
+
     return (
 
-        <Body>
-            <Container>
-                <Image
-                    style={{ margin: 40 }}
-                    source={require("../../assets/images/unicuritiba.png")}
-                />
-            </Container>
-            <ScrollViewBaixo vertical={true} showsVerticalScrollIndicator={false} contentContainerStyle={{ flexDirection: 'column' }} style={{ position: 'relative', top: 1, maxHeight: 700 }}>
-
-                <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#00345C', textAlign: 'left', }}>
-                </Text>
-            </ScrollViewBaixo>
-            <MenuFeed />
-
-        </Body>
+        <Container>
+            <Header>
+                <ViewBack>
+                    <Arrow name="arrowleft" onPress={() => navigation.navigate('Menu')}/>
+                </ViewBack>
+                <TitleView>
+                    <Title>Suporte</Title>
+                </TitleView>
+            </Header>
+            <Body>
+                <InfoView>
+                    <Info>
+                        Para entrar em contato com nosso suporte, acesse
+                        um dos nossos canais de atendimento abaixo.
+                    </Info>
+                </InfoView>
+                <IconsView>
+                    <ViewIcons>
+                        <Phone name="phone"/>
+                    </ViewIcons>
+                    <ViewIcons style={{backgroundColor: '#00c04c'}}>
+                        <Whatsapp name="whatsapp"/>
+                    </ViewIcons>
+                </IconsView>
+                <InfoHour>
+                    <Info>
+                        Horário de Atendimento:
+                        Segunda - Sexta das 8h30 as 17h
+                        Sábado das 8h30 as 13h
+                    </Info>
+                </InfoHour>
+            </Body>
+        </Container>
 
     );
 };
