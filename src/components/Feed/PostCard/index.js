@@ -11,7 +11,7 @@ const QuadradoElement = () => (
       </Text>
       <AlignCircle>
         <Circle />
-        <View style={{ marginRight: 30}}>
+        <View style={{ marginLeft: 5}}>
           <Text style={{ color: '#19202D', fontSize: 12, opacity: 100 }}>
             nome de usuario
           </Text>

@@ -9,7 +9,7 @@ const { height, width } = Dimensions.get('window');
 export const Menu = styled.View`
   background-color: #E4ECF2;
   width: ${width * 1}px;
-  height: ${height * 0.34}px;
+  height: ${height * 0.45}px;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
   align-items: flex-start;

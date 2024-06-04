@@ -6,7 +6,7 @@ const { height, width } = Dimensions.get('window');
 
 export const Body = styled.View`
   width: ${width * 1}px;
-  height: ${height * 0.9}px;
+  height: ${height * 1}px;
   background-color: white;
 `
 export const ImageView = styled.View`
