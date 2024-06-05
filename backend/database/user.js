@@ -40,7 +40,7 @@ const User = connection.define('User', {
 
 connection.sync({ alter: true })
     .then(() => {
-        console.log('Tabela criada com sucesso');
+        console.log('Tabela User criada com sucesso');
     })
     .catch(err => {
         console.error('Erro ao criar tabela:', err);

@@ -63,7 +63,7 @@ const Posts = connection.define('Posts', {
 
 connection.sync({ alter: true })
     .then(() => {
-        console.log('Tabela criada com sucesso');
+        console.log('Tabela Posts criada com sucesso');
     })
     .catch(err => {
         console.error('Erro ao criar tabela:', err);

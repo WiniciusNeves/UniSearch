@@ -28,7 +28,7 @@ const Load = () => {
                 </TextView>
                 <ButtonView >
                     <Button>
-                        <TextButton onPress={() => navigation.navigate('Auth')}>Acessar</TextButton>
+                        <TextButton onPress={() => navigation.navigate('Feed')}>Acessar</TextButton>
                     </Button>
                 </ButtonView>
             </Body>

@@ -35,7 +35,7 @@ export const ImageView = styled.View`
 
 export const Apa = styled.View`
     align-items: center;
-    height: ${height * .4}px;
+    height: ${height * .25}px;
     width: ${width * 1}px;
     position: absolute;
     bottom: -60px;

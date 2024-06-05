@@ -2,12 +2,15 @@ import React from "react";
 import { Image } from "react-native";
 import { ImageView, Body, Input, ForgotText, Button, ButtonText, Text, RegisterButon } from "./styles";
 import { useNavigation } from "@react-navigation/native";
-
+import { BackButton, Icones } from "../MenuResgister/styles";
 const Auth = () => {
     const navigation = useNavigation();
 
     return (
         <>
+            <BackButton onPress={() => navigation.goBack()}>
+                <Icones name="angle-left" size={25} style={{ color: '#35B6B4' }} />
+            </BackButton>
             <ImageView>
                 <Image
                     source={require('../../assets/images/unicuritiba.png')}
