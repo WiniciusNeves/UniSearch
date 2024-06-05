@@ -30,7 +30,7 @@ const MenuRegister = () => {
                 <Selecione>
                     <Picker
                         selectedValue={selectedValue}
-                        style={{ height: 50, width: 300 }}
+                        style={{ height: 50, width: 300 , color: '#606060'}}
                         onValueChange={handleValueChange}
                     >
                         <Picker.Item label="Selecione qual tipo postagem voce deseja criar" value="" />
