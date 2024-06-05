@@ -14,7 +14,7 @@ export const Header = styled.View`
     flex-direction: row;
     align-items: center;
 `
-export const ViewBack = styled.View`
+export const ViewBack = styled.TouchableOpacity`
     position: fixed;
     width: 50px;
     height: 50px;
@@ -50,6 +50,7 @@ export const Info = styled.Text`
     font-size: 14px;
     color: #19202D;
     text-align: center;
+    white-space: pre-line;
 `
 export const IconsView = styled.View`
     flex-direction: row;
@@ -75,5 +76,5 @@ export const Whatsapp = styled(FontAwesome)`
 export const InfoHour = styled.View`
     margin-top: 40px;
     align-items: center;
-    width: ${width * 0.65}px;
+    width: ${width * 0.7}px;
 `

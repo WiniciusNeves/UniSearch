@@ -8,17 +8,32 @@ import { Arrow, Container, Header, ViewBack,
     InfoHour
 } from "./styles";
 import { useNavigation } from "@react-navigation/native";
-
+import { Linking } from 'react-native';
 
 const Suporte = () => {
     const navigation = useNavigation();
 
-    return (
+    const openWhatsApp = () => {
+        const phoneNumber = '5541998486650'; 
+        const url = `whatsapp://send?phone=${phoneNumber}`;
+        Linking.openURL(url).catch(() => {
+            alert('Certifique-se de que o WhatsApp está instalado no seu dispositivo');
+        });
+    };
 
+    const dialPhoneNumber = () => {
+        const phoneNumber = '5541998486650'; 
+        const url = `tel:${phoneNumber}`;
+        Linking.openURL(url).catch(() => {
+            alert('Não foi possível abrir o discador de telefone');
+        });
+    };
+
+    return (
         <Container>
             <Header>
-                <ViewBack>
-                    <Arrow name="arrowleft" onPress={() => navigation.navigate('Menu')}/>
+                <ViewBack onPress={() => navigation.navigate('Menu')}>
+                    <Arrow name="arrowleft"/>
                 </ViewBack>
                 <TitleView>
                     <Title>Suporte</Title>
@@ -32,23 +47,25 @@ const Suporte = () => {
                     </Info>
                 </InfoView>
                 <IconsView>
-                    <ViewIcons>
+                    <ViewIcons onPress={dialPhoneNumber}>
                         <Phone name="phone"/>
                     </ViewIcons>
-                    <ViewIcons style={{backgroundColor: '#00c04c'}}>
+                    <ViewIcons style={{backgroundColor: '#00c04c'}} onPress={openWhatsApp}>
                         <Whatsapp name="whatsapp"/>
                     </ViewIcons>
                 </IconsView>
                 <InfoHour>
                     <Info>
                         Horário de Atendimento:
+                        {"\n"}
                         Segunda - Sexta das 8h30 as 17h
+                        {"\n"}
                         Sábado das 8h30 as 13h
                     </Info>
                 </InfoHour>
             </Body>
         </Container>
-
     );
 };
+
 export default Suporte;
