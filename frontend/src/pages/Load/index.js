@@ -1,7 +1,7 @@
 import React from "react";
 import { Image } from "react-native";
 import {
-    Body, Button, ButtonView, Container,
+    Body, Button, ButtonView, ButtonWrapper, Container,
     ImageView, Text, TextButton, TextView
 } from "./styles";
 import { useNavigation } from '@react-navigation/native'
@@ -27,9 +27,11 @@ const Load = () => {
                     </Text>
                 </TextView>
                 <ButtonView >
-                    <Button>
-                        <TextButton onPress={() => navigation.navigate('Feed')}>Acessar</TextButton>
-                    </Button>
+                    <ButtonWrapper onPress={() => navigation.navigate('Feed')}>
+                        <Button>
+                            <TextButton>Acessar</TextButton>
+                        </Button>
+                    </ButtonWrapper>
                 </ButtonView>
             </Body>
         </>

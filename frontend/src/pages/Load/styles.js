@@ -30,6 +30,9 @@ export const ButtonView = styled.View`
     height: ${height * .2}px;
     justify-content: flex-end;
 `
+export const ButtonWrapper = styled.TouchableOpacity`
+  border-radius: 10px;
+`
 export const Button = styled(LinearGradient).attrs({
     colors: ['#00345C', '#35B6B4'],
     start: { x: 0, y: 0 },
