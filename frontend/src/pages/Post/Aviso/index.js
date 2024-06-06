@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { Image } from "react-native";
 
-const Comodidade = () => {
+const Aviso = () => {
     const navigation = useNavigation();
     return (
         <>
@@ -34,4 +34,4 @@ const Comodidade = () => {
     );
 }
 
-export default Comodidade;
+export default Aviso;
