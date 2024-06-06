@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, View } from "react-native";
+import { Image, Alert } from "react-native";
 import { ImageView, Body, Apa, Button, Text, LeadMore, Icone, Icone2, ButtonText } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { BackButton} from "../MenuResgister/styles";
@@ -8,6 +8,23 @@ import { Arrow } from "../Suporte/styles";
 
 const Menu = () => {
     const navigation = useNavigation();
+
+    function handleExit() {
+        Alert.alert(
+            "Confirmação de Saída",
+            "Deseja sair?",
+            [
+                {
+                    text: "Cancelar",
+                    onPress: () => console.log("Cancel Pressed"),
+                    style: "cancel"
+                },
+                { text: "OK", onPress: () => navigation.navigate('Load') }
+            ],
+            { cancelable: false }
+        );
+    }
+
     return (
         <Body>
             <BackButton onPress={() => navigation.goBack()}>
@@ -22,14 +39,13 @@ const Menu = () => {
             </ImageView>
             <Apa>
                 <Button>
-
                     <ButtonText onPress={() => navigation.navigate('Admin')}>
                         <Text style={{ color: '#333333', fontFamily: 'Poppins-SemiBold', fontSize: 16, fontWeight: 'bold' }}>Admin</Text>
                     </ButtonText>
                 </Button>
             </Apa>
             <LeadMore>
-                <Button onPress={() => navigation.navigate('Feed')}>
+                <Button onPress={handleExit}>
                     <Icone2 name="exit-outline" color="#00345C" style={{ color: '#35B6B4' }} />
                 </Button>
                 <Button onPress={() => navigation.navigate('Suporte')}>

@@ -42,7 +42,6 @@ export const Apa = styled.View`
     background-color: white;
     border-top-left-radius: 34px;
     border-top-right-radius: 34px;
-    elevation: 22;
 `
 export const Text = styled.Text`
     font-family: 'Poppins-SemiBold';
@@ -51,7 +50,7 @@ export const Text = styled.Text`
     opacity: 0.43;
 `
 export const Button = styled.TouchableOpacity`
-    margin-top: 20px;
+    margin-top: 10px;
 `
 export const LeadMore = styled.View`
     background-color: #E4ECF2;
