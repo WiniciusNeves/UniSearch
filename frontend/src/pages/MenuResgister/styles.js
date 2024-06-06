@@ -21,14 +21,14 @@ export const Body2 = styled.View`
     background-color: white;
 `
 export const BackButton = styled.TouchableOpacity`
+    position: fixed;
+    width: 50px;
     height: 50px;
-    width: ${width * .12}px;
-    margin: 20px;
+    border-radius: 20px;
+    border: 1px #35B6B4;
     align-items: center;
     justify-content: center;
-    border-radius: 20px;
-    border: 2px solid #35B6B4;
-
+    margin: 20px;
 `
 export const Icones = styled(Icon)`
     font-size: 37px;

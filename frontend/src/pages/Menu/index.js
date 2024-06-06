@@ -2,7 +2,8 @@ import React from "react";
 import { Image, View } from "react-native";
 import { ImageView, Body, Apa, Button, Text, LeadMore, Icone, Icone2, ButtonText } from "./styles";
 import { useNavigation } from "@react-navigation/native";
-import { BackButton, Icones} from "../MenuResgister/styles";
+import { BackButton} from "../MenuResgister/styles";
+import { Arrow } from "../Suporte/styles";
 
 
 const Menu = () => {
@@ -10,7 +11,7 @@ const Menu = () => {
     return (
         <Body>
             <BackButton onPress={() => navigation.goBack()}>
-                <Icones name="angle-left" size={25} style={{ color: '#35B6B4' }} />
+                <Arrow name="arrowleft"/>
             </BackButton>
             <ImageView>
                 <Image

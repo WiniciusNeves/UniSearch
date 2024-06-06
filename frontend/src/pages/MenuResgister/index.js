@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Body, Body2, Icones, BackButton, ImagenView, Selecione } from "./styles";
+import { Body, Body2, BackButton, ImagenView, Selecione } from "./styles";
+import { Arrow } from "../Suporte/styles";
 import { useNavigation } from "@react-navigation/native";
 import { Picker } from '@react-native-picker/picker';
 import { Image } from "react-native";
@@ -19,7 +20,7 @@ const MenuRegister = () => {
         <>
             <Body>
                 <BackButton onPress={() => navigation.goBack()}>
-                    <Icones name="angle-left" size={25} style={{ color: '#35B6B4' }} />
+                    <Arrow name="arrowleft"/>
                 </BackButton>
                 <ImagenView>
                     <Image

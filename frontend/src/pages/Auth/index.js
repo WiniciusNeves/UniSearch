@@ -2,14 +2,16 @@ import React from "react";
 import { Image } from "react-native";
 import { ImageView, Body, Input, ForgotText, Button, ButtonText, Text, RegisterButon } from "./styles";
 import { useNavigation } from "@react-navigation/native";
-import { BackButton, Icones } from "../MenuResgister/styles";
+import { BackButton } from "../MenuResgister/styles";
+import { Arrow } from "../Suporte/styles";
+
 const Auth = () => {
     const navigation = useNavigation();
 
     return (
         <>
             <BackButton onPress={() => navigation.goBack()}>
-                <Icones name="angle-left" size={25} style={{ color: '#35B6B4' }} />
+                <Arrow name="arrowleft"/>
             </BackButton>
             <ImageView>
                 <Image
