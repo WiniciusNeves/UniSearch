@@ -64,7 +64,6 @@ export const Button = styled.TouchableOpacity`
     width: ${width * 0.8}px;
     align-items: center;
     justify-content: center;
-    margin-top: 50px;
     border-radius: 10px;
     background-color: #35B6B4;
 `;
@@ -77,12 +76,12 @@ export const ButtonText = styled.Text`
 
 export const BackButton = styled.TouchableOpacity`
     height: 50px;
-    width: ${width * 0.12}px;
+    width: 50px;
     margin: 20px;
     align-items: center;
     justify-content: center;
     border-radius: 20px;
-    border: 2px solid #35B6B4;
+    border: 1px solid #35B6B4;
 `;
 
 export const Text = styled.Text`

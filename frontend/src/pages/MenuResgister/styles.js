@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const { height, width } = Dimensions.get('window');
 
 export const Body = styled.View`
-    height: ${height * .5}px;
+    height: ${height * .9}px;
     background-color: #E2E2E2;
 
 `

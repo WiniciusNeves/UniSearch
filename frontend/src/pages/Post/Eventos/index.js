@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Body, Body2, Circular, Input, InputView, Button, ButtonText, BackButton, Text, Icones } from "./styles";
+import { Arrow } from "../../Suporte/styles";
 import { useNavigation } from "@react-navigation/native";
 import { launchImageLibrary } from 'react-native-image-picker';
 import { Colors } from "react-native/Libraries/NewAppScreen";
@@ -31,7 +32,7 @@ const Eventos = () => {
         <>
             <Body>
                 <BackButton onPress={() => navigation.navigate('Feed')}>
-                    <Icones name="angle-left" size={25} style={{ position: 'absolute', left: 17, top: 4, color: '#35B6B4' }} />
+                    <Arrow name="arrowleft" />
                 </BackButton>
             </Body>
             <Body2>
@@ -51,7 +52,7 @@ const Eventos = () => {
                     <Input placeholder="Data-Final" id="dateF" />
                     <Input placeholder="Local" id="local" />
                 </InputView>
-                <Button style={{ position: 'absolute', bottom: 50 }}>
+                <Button style={{ position: 'absolute', bottom: 25 }}>
                     <ButtonText>Cadastrar</ButtonText>
                 </Button>
             </Body2>
