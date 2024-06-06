@@ -8,9 +8,7 @@ import Feed from './pages/Feed';
 import Menu from './pages/Menu';
 import MenuRegister from './pages/MenuResgister';
 import Suporte from './pages/Suporte';
-import Atletica from './pages/Post/Atletica';
 import Aviso from './pages/Post/Aviso';
-import Comodidade from './pages/Post/Comodidade';
 import Eventos from './pages/Post/Eventos';
 
 const Stack = createStackNavigator();

@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const user = require('./database/user')
-const posts = require('./database/posts')
+const user = require('./config/database')
+
 
 const app = require('./app')
 
