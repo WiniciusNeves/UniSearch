@@ -35,7 +35,6 @@ const MenuRegister = () => {
                         onValueChange={handleValueChange}
                     >
                         <Picker.Item label="Selecione qual tipo postagem voce deseja criar" value="" />
-                        <Picker.Item label="Comodidade" value="Comodidade" />
                         <Picker.Item label="Eventos" value="Eventos" />
                         <Picker.Item label="Aviso" value="Aviso" />
                     </Picker>

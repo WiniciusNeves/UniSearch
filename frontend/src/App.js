@@ -28,7 +28,6 @@ function App() {
         <Stack.Screen name="Menu" component={Menu} options={{ headerShown: false }} />
         <Stack.Screen name="Suporte" component={Suporte} options={{ headerShown: false }} />
         <Stack.Screen name="Aviso" component={Aviso} options={{ headerShown: false }} />
-        <Stack.Screen name="Comodidade" component={Comodidade} options={{ headerShown: false }} />
         <Stack.Screen name="Eventos" component={Eventos} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>

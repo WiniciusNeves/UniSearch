@@ -28,7 +28,7 @@ export const Icones = styled(Icon)`
 `
 
 export const InputView = styled.View`
-    height: ${height * .3}px;
+    height: ${height * .25}px;
     justify-content: flex-end;
     gap: 20px;
    
@@ -58,19 +58,22 @@ export const ButtonText = styled.Text`
     color: white;
 `
 export const BackButton = styled.TouchableOpacity`
-height: 50px;
-width: ${width * .12}px;
-margin: 20px;
-align-items: left;
-justify-content: center;
-border-radius: 20px;
-border: 2px solid #35B6B4;
+    height: 50px;
+    width: 50px;
+    margin: 20px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    border: 1px solid #35B6B4;
 
 `
-
+export const TextView = styled.View`
+    width: ${width * .8}px;
+`
 export const Text = styled.Text`
     font-family: 'Poppins-SemiBold';
     font-size: 16px;
     color: black;
     opacity: 0.43;
+    text-align: center;
 `

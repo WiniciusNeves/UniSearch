@@ -1,5 +1,6 @@
 import React from "react";
-import { Body, Body2, ImageView, Input, InputView, Button, ButtonText, BackButton, Text, Icones } from "./styles";
+import { Body, Body2, ImageView, Input, InputView, Button, ButtonText, BackButton, Text, Icones, TextView } from "./styles";
+import { Arrow } from "../../Suporte/styles";
 import { useNavigation } from "@react-navigation/native";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { Image } from "react-native";
@@ -10,7 +11,7 @@ const Aviso = () => {
         <>
             <Body>
                 <BackButton onPress={() => navigation.navigate('Feed')}>
-                    <Icones name="angle-left" size={25} style={{ position: 'absolute', left: 17, top: 4, color: '#35B6B4' }} />
+                    <Arrow name="arrowleft"/>
                 </BackButton>
                 <ImageView>
                     <Image
@@ -20,8 +21,9 @@ const Aviso = () => {
                 </ImageView>
             </Body>
             <Body2>
-
-                <Text style={{ position: 'absolute', top: 50, color: Colors.black }}>Escreva o seu Aviso anonimo, por proteger sua indentidade</Text>
+                <TextView>
+                    <Text style={{ top: 20 }}>Escreva o seu Aviso anonimo, por proteger sua indentidade</Text>
+                </TextView>
                 <InputView>
                     <Input placeholder="Titulo" id="title" />
                     <Input placeholder="Descricão" id="description" />
