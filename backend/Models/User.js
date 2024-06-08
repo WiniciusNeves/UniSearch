@@ -22,7 +22,14 @@ const User = sequelize.define('User', {
     role: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    foto: {
+        type: DataTypes.STRING,
+        allowNull: false
     }
+
+
+
 }, {
     tableName: 'Users',
     timestamps: false

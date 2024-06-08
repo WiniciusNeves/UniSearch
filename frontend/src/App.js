@@ -11,6 +11,7 @@ import Suporte from './pages/Suporte';
 import Aviso from './pages/Post/Aviso';
 import Eventos from './pages/Post/Eventos';
 
+
 const Stack = createStackNavigator();
 
 function App() {

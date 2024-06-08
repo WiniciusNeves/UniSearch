@@ -1,17 +1,15 @@
 const express = require('express');
-const router = require('./router');
 const bodyParser = require('body-parser');
-
 const app = express();
+const userRoutes = require('./router/user');
+const cors = require('cors');
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
 app.use(bodyParser.json());
-app.use(express.json());
+app.use('/user', userRoutes);
 
-app.use(router);
 
 const port = 3000;
-
 app.listen(port, () => {
-    console.log(`Servidor rodando na porta ${port}`, `http://localhost:${port}`);
+    console.log(`Server running on port ${port}`);
 });
