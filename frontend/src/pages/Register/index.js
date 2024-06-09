@@ -3,9 +3,7 @@ import { Body, Body2, Circular, Input, InputView, CameraIcon, Button, ButtonText
 import { useNavigation } from "@react-navigation/native";
 import { launchImageLibrary } from 'react-native-image-picker';
 import { Image, Alert, StyleSheet, TouchableOpacity } from "react-native";
-import axios from 'axios';
-
-const apiBaseUrl = 'http://192.168.0.127:3000'; // Substitua pelo IP correto
+import api from '../../api/api'; // Importando a instância do axios
 
 const Register = () => {
     const navigation = useNavigation();
@@ -57,7 +55,7 @@ const Register = () => {
         }
 
         try {
-            const response = await axios.post(`${apiBaseUrl}/addUser`, formData, {
+            const response = await api.post('/addUser', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 }

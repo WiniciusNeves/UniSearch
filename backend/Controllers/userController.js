@@ -1,52 +1,43 @@
-const User = require('../models/user'); // Corrigir o caminho da importação do modelo User, se necessário
-const axios = require('axios');
-const { Op } = require('sequelize');
-const fs = require('fs');
+const User = require('../models/User');
+const multer = require('multer');
 const path = require('path');
+
+// Configuração do multer para upload de arquivos
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './backend/uploads/');
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+
+const upload = multer({ storage: storage });
+
+exports.upload = upload.single('foto');
 
 exports.createUser = async (req, res) => {
     try {
         const { username, email, password, role } = req.body;
-        
-        if (!username || !email || !password || !role) {
-            return res.status(400).json({ error: 'Todos os campos são obrigatórios' });
-        }
+        const foto = req.file ? req.file.filename : null;
 
-        // Verifique se o email já está em uso
-        const existingUser = await User.findOne({ where: { email } });
-        if (existingUser) {
-            return res.status(400).json({ error: 'Email já está em uso' });
-        }
-
-        let userData = { username, email, password, role };
-
-        // Lidar com upload de imagem
-        if (req.file) {
-            const imagePath = path.join(__dirname, '..', 'uploads', req.file.filename);
-            userData.foto = imagePath;
-        }
-
-        const user = await User.create(userData);
+        const user = await User.create({ username, email, password, role, foto });
         res.status(201).json(user);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
 };
 
-// Adicionar middleware para tratar uploads de imagem
-const multer = require('multer');
-
-// Configuração do multer
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'uploads/'); // Local onde as imagens serão salvas
-    },
-    filename: (req, file, cb) => {
-        cb(null, `${Date.now()}_${file.originalname}`);
+exports.loginUser = async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const user = await User.findOne({ where: { email } });
+        if (!user || user.password !== password) {
+            return res.status(401).json({ message: 'Credenciais inválidas' });
+        }
+        res.status(200).json(user);
+    } catch (error) {
+        console.error('Erro ao fazer login:', error);
+        res.status(500).json({ message: 'Erro ao acessar sua conta. Por favor, tente novamente mais tarde.' });
     }
-});
-
-const upload = multer({ storage: storage });
-
-// Exportar o upload middleware
-exports.upload = upload.single('foto');
+};
