@@ -24,7 +24,7 @@ const Post = sequelize.define('Post', {
         allowNull: false
     },
     post_type: {
-        type: DataTypes.ENUM('Atletica', 'Aviso', 'Evento', 'Comodidade'),
+        type: DataTypes.ENUM('Atletica', 'Aviso', 'Eventos', 'Comodidades'),
         allowNull: false
     }
 }, {

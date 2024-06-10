@@ -2,12 +2,16 @@ import React from "react";
 import { Image, Alert } from "react-native";
 import { ImageView, Body, Apa, Button, Text, LeadMore, Icone, Icone2, ButtonText } from "./styles";
 import { useNavigation } from "@react-navigation/native";
-import { BackButton} from "../MenuResgister/styles";
+import { BackButton } from "../MenuResgister/styles";
 import { Arrow } from "../Suporte/styles";
+import { useAuth } from '../../contexts/AuthContext';  
+
+import auth from '@react-native-firebase/auth'; 
 
 
 const Menu = () => {
     const navigation = useNavigation();
+    const { user } = useAuth();
 
     function handleExit() {
         Alert.alert(
@@ -19,43 +23,82 @@ const Menu = () => {
                     onPress: () => console.log("Cancel Pressed"),
                     style: "cancel"
                 },
-                { text: "OK", onPress: () => navigation.navigate('Load') }
+                {
+                    text: "OK",
+                    onPress: () => {
+                        navigation.navigate('Load');
+                        signOut(); // Chamando a função signOut() ao sair
+                    }
+                }
             ],
             { cancelable: false }
         );
+    };
+
+    async function signOut() {
+        await auth().signOut(); // Utilizando o método signOut() do Firebase Auth
     }
 
     return (
         <Body>
             <BackButton onPress={() => navigation.goBack()}>
-                <Arrow name="arrowleft"/>
+                <Arrow name="arrowleft" />
             </BackButton>
             <ImageView>
                 <Image
                     source={require('../../assets/images/Univer.png')}
-
                     resizeMode="cover"
                 />
             </ImageView>
-            <Apa>
-                <Button>
-                    <ButtonText onPress={() => navigation.navigate('Admin')}>
-                        <Text style={{ color: '#333333', fontFamily: 'Poppins-SemiBold', fontSize: 16, fontWeight: 'bold' }}>Admin</Text>
-                    </ButtonText>
-                </Button>
-            </Apa>
+            {user && user.role === 'admin' ? (
+                <Apa>
+                    <Button onPress={() => navigation.navigate('Admin')}>
+                        <ButtonText>
+                            <Text style={{ color: '#333333', fontFamily: 'Poppins-SemiBold', fontSize: 16, fontWeight: 'bold' }}>Admin</Text>
+                        </ButtonText>
+                    </Button>
+                </Apa>
+            ) : null}
+
+            {!user || user.role !== 'admin' ? (
+                <Apa>
+                    <Button alert onPress={() =>
+                        Alert.alert(
+                            'Acesso Restrito',
+                            'Você precisa ser um administrador para acessar essa página.',
+                            [{ text: 'OK', style: 'cancel' }],
+                            { cancelable: false }
+                        )
+                    }>
+                        <ButtonText style={{ flexDirection: 'row', alignItems: 'center', opacity: 0.5 }}>
+                            <Icone name="lock" color="#333333" style={{ textAlign: 'left' }} />
+                            <Text style={{ color: '#333333', fontFamily: 'Poppins-SemiBold', fontSize: 16, fontWeight: 'bold' }}>Admin</Text>
+                        </ButtonText>
+                    </Button>
+                </Apa>
+            ) : null}
+
             <LeadMore>
-                <Button onPress={handleExit}>
-                    <Icone2 name="exit-outline" color="#00345C" style={{ color: '#35B6B4' }} />
-                </Button>
+                {user && user.id > 0 ? (
+                    <Button onPress={handleExit}>
+                        <Icone2 name="exit-outline" color="#00345C" style={{ color: '#35B6B4' }} />
+                    </Button>
+                ) : null}
+
                 <Button onPress={() => navigation.navigate('Suporte')}>
                     <Icone name="question-circle-o" color="#00345C" style={{ color: '#35B6B4' }} />
                 </Button>
-                <Button onPress={() => navigation.navigate('Auth')}>
-                    <Icone name="user-circle-o" color="#00345C" style={{ color: '#35B6B4' }} />
-                </Button>
+                {user && user.id > 0 ? (
+                    <Button alert onPress={() => Alert.alert("Atenção", "Você já está logado.", [{ text: "OK", style: "cancel" }], { cancelable: false })}>
+                        <Icone name="user-circle-o" color="#00345C" style={{ color: '#35B6B4' }} />
+                    </Button>
+                ) : (
+                        <Button onPress={() => navigation.navigate('Auth')}>
+                            <Icone name="user-circle-o" color="#00345C" style={{ color: '#35B6B4' }} />
+                        </Button>
+                    )}
             </LeadMore>
-        </Body >
+        </Body>
     );
 }
 

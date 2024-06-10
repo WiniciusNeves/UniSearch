@@ -1,19 +1,15 @@
+// src/pages/Feed/index.js
 import React from "react";
-import { Image, View } from "react-native";
-import {
-  Body, ImageView, Input, Text, 
-  Container, ScrollView, ScrollViewBaixo, 
-  SearchIcon
-} from "./styles";
+import { Image, View, Text } from "react-native";
+import { Body, ImageView, Input, Container, ScrollView, ScrollViewBaixo, SearchIcon } from "./styles";
 import ButtonElement from "../../components/Feed/HashtagButtons/index";
 import QuadradoElement from "../../components/Feed/PostCard/index";
 import Recents from "../../components/Feed/Recents/index";
 import Menu from "../../components/Feed/MenuFeed/index";
-import { useNavigation } from "@react-navigation/native";
+import { useAuth } from '../../contexts/AuthContext';  // Importando o useAuth
 
 export default function Feed() {
-  const navigation = useNavigation();
-
+  const { user } = useAuth();
   return (
     <Body>
       <ImageView>
@@ -35,7 +31,7 @@ export default function Feed() {
           <ButtonElement backgroundColor={'#B5DEDD'} text={'#atléticas'}/>
         </Container>
       </ScrollView>
-      <ScrollViewBaixo verfical={true} showsVerticalScrollIndicator={false} contentContainerStyle={{ flexDirection: 'column' }}>
+      <ScrollViewBaixo vertical={true} showsVerticalScrollIndicator={false} contentContainerStyle={{ flexDirection: 'column' }}>
         <Text style={{ color: '#00345C', fontFamily: 'Poppins-Bold', fontSize: 17, marginLeft: 20, marginBottom: 10, opacity: 100 }}>
           Seguindo
         </Text>

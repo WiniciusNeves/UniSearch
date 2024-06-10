@@ -1,3 +1,4 @@
+// src/pages/Auth/index.js
 import React, { useState } from "react";
 import { Image, Alert } from "react-native";
 import { ImageView, Body, Input, ForgotText, Button, ButtonText, Text, RegisterButon } from "./styles";
@@ -5,10 +6,11 @@ import { useNavigation } from "@react-navigation/native";
 import { BackButton } from "../MenuResgister/styles";
 import { Arrow } from "../Suporte/styles";
 import api from '../../api/api';
-
+import { useAuth } from '../../contexts/AuthContext';  // Importando o useAuth
 
 const Auth = () => {
     const navigation = useNavigation();
+    const { login } = useAuth();  // Usando o hook useAuth para acessar a função login do contexto
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -16,7 +18,8 @@ const Auth = () => {
         try {
             const response = await api.post('/auth/login', { email, password });
             if (response.status === 200) {
-                navigation.navigate('Feed', { user: response.data });
+                login(response.data);  // Salvando os dados do usuário no contexto
+                navigation.navigate('Feed');
             } else {
                 Alert.alert('Erro', 'Credenciais inválidas. Por favor, verifique seu e-mail e senha.');
             }
@@ -24,7 +27,6 @@ const Auth = () => {
             Alert.alert('Erro', 'Erro ao acessar sua conta. Por favor, tente novamente mais tarde.');
         }
     };
-
 
     return (
         <>
@@ -67,4 +69,3 @@ const Auth = () => {
 };
 
 export default Auth;
-
