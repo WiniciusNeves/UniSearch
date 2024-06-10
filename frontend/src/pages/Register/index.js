@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { View } from "react-native";
 import { Body, Body2, Circular, Input, InputView, CameraIcon, Button, ButtonText, BackButton, Text } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { launchImageLibrary } from 'react-native-image-picker';
+import Toast, { BaseToast } from 'react-native-toast-message';
 import { Image, Alert, StyleSheet, TouchableOpacity } from "react-native";
-import api from '../../api/api'; // Importando a instância do axios
+import api from '../../api/api'; 
 
 const Register = () => {
     const navigation = useNavigation();
@@ -13,6 +15,36 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
 
+    const toastConfig = {
+        error: ({ text1, text2 }) => (
+          <BaseToast
+            {...{ text1, text2 }}
+            style={{ backgroundColor: '#fff', borderLeftColor: 'red' }}
+            textStyle={{ color: '#909090' }}
+          />
+        ),
+      };
+
+    const toastFill = () => {
+        Toast.show({
+          type: "error",
+          text1: "Preencha todos os campos.",
+          text2: "Tente novamente!",
+          autoHide: true,
+          visibilityTime: 2500,
+        })
+      }
+    
+    const toastError = () => {
+        Toast.show({
+          type: "error",
+          text1: "Erro ao cadastrar usuário.",
+          text2: "Tente novamente mais tarde.",
+          autoHide: true,
+          visibilityTime: 2500,
+        })
+      }
+    
     const handleImagePicker = () => {
         const options = {
             mediaType: 'photo',
@@ -33,7 +65,7 @@ const Register = () => {
 
     const handleRegister = async () => {
         if (!name || !email || !password) {
-            Alert.alert('Erro', 'Por favor, preencha todos os campos');
+            toastFill();
             return;
         }
 
@@ -64,12 +96,15 @@ const Register = () => {
             navigation.navigate('Auth');
         } catch (error) {
             console.error('Erro na API:', error);
-            setError('Erro ao cadastrar usuário. Tente novamente.');
+            toastError();
         }
     };
 
     return (
-        <>
+        <>  
+            <View style={{ zIndex: 9999 }}>
+                <Toast config={toastConfig} />
+            </View>
             <Body />
             <Body2>
                 <Circular onPress={handleImagePicker}>
@@ -111,7 +146,6 @@ const Register = () => {
                         <Text>Voltar?</Text>
                     </TouchableOpacity>
                 </BackButton>
-                {error && <Text style={{ color: 'red' }}>{error}</Text>}
             </Body2>
         </>
     );
