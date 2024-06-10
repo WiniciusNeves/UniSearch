@@ -12,6 +12,10 @@ import MenuRegister from './pages/MenuResgister';
 import Suporte from './pages/Suporte';
 import Aviso from './pages/Post/Aviso';
 import Eventos from './pages/Post/Eventos';
+import Comodidade from './pages/Post/Comodidade';
+import Atletica from './pages/Post/Atletica';
+
+import api from './api/api';
 
 const Stack = createStackNavigator();
 
@@ -29,6 +33,8 @@ function App() {
           <Stack.Screen name="Suporte" component={Suporte} options={{ headerShown: false }} />
           <Stack.Screen name="Aviso" component={Aviso} options={{ headerShown: false }} />
           <Stack.Screen name="Eventos" component={Eventos} options={{ headerShown: false }} />
+          <Stack.Screen name="Comodidade" component={Comodidade} options={{ headerShown: false }} />
+          <Stack.Screen name="Atletica" component={Atletica} options={{ headerShown: false }} />
         </Stack.Navigator>
       </NavigationContainer>
     </AuthProvider>
@@ -36,3 +42,4 @@ function App() {
 }
 
 export default App;
+

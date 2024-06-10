@@ -20,21 +20,23 @@ const MenuRegister = () => {
         <>
             <Body>
                 <BackButton onPress={() => navigation.goBack()}>
-                    <Arrow name="arrowleft"/>
+                    <Arrow name="arrowleft" />
                 </BackButton>
                 <ImagenView>
                     <Image
-                        source={require('../../assets/images/Create.png')}  style={{ width: 280, height: 280, resizeMode: 'cover' }}/>
+                        source={require('../../assets/images/Create.png')} style={{ width: 280, height: 280, resizeMode: 'cover' }} />
                 </ImagenView>
             </Body>
             <Body2>
                 <Selecione>
                     <Picker
                         selectedValue={selectedValue}
-                        style={{ height: 50, width: 300 , color: '#606060'}}
+                        style={{ height: 50, width: 300, color: '#606060' }}
                         onValueChange={handleValueChange}
                     >
                         <Picker.Item label="Selecione qual tipo postagem voce deseja criar" value="" />
+                        <Picker.Item label="Comodidade" value="Comodidade" />
+                        <Picker.Item label="Atletica" value="Atletica" />
                         <Picker.Item label="Eventos" value="Eventos" />
                         <Picker.Item label="Aviso" value="Aviso" />
                     </Picker>

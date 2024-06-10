@@ -4,14 +4,11 @@ import { ImageView, Body, Apa, Button, Text, LeadMore, Icone, Icone2, ButtonText
 import { useNavigation } from "@react-navigation/native";
 import { BackButton } from "../MenuResgister/styles";
 import { Arrow } from "../Suporte/styles";
-import { useAuth } from '../../contexts/AuthContext';  
-
-import auth from '@react-native-firebase/auth'; 
-
+import { useAuth } from '../../contexts/AuthContext';
 
 const Menu = () => {
     const navigation = useNavigation();
-    const { user } = useAuth();
+    const { user, logout } = useAuth();
 
     function handleExit() {
         Alert.alert(
@@ -26,17 +23,13 @@ const Menu = () => {
                 {
                     text: "OK",
                     onPress: () => {
-                        navigation.navigate('Load');
-                        signOut(); // Chamando a função signOut() ao sair
+                        logout();
+                        navigation.navigate('Feed');
                     }
                 }
             ],
             { cancelable: false }
         );
-    };
-
-    async function signOut() {
-        await auth().signOut(); // Utilizando o método signOut() do Firebase Auth
     }
 
     return (
@@ -50,7 +43,7 @@ const Menu = () => {
                     resizeMode="cover"
                 />
             </ImageView>
-            {user && user.role === 'admin' ? (
+            {user?.role === 'admin' ? (
                 <Apa>
                     <Button onPress={() => navigation.navigate('Admin')}>
                         <ButtonText>
@@ -58,9 +51,7 @@ const Menu = () => {
                         </ButtonText>
                     </Button>
                 </Apa>
-            ) : null}
-
-            {!user || user.role !== 'admin' ? (
+            ) : (
                 <Apa>
                     <Button alert onPress={() =>
                         Alert.alert(
@@ -76,27 +67,27 @@ const Menu = () => {
                         </ButtonText>
                     </Button>
                 </Apa>
-            ) : null}
+            )}
 
             <LeadMore>
-                {user && user.id > 0 ? (
+                {user?.id > 0 && (
                     <Button onPress={handleExit}>
                         <Icone2 name="exit-outline" color="#00345C" style={{ color: '#35B6B4' }} />
                     </Button>
-                ) : null}
+                )}
 
                 <Button onPress={() => navigation.navigate('Suporte')}>
                     <Icone name="question-circle-o" color="#00345C" style={{ color: '#35B6B4' }} />
                 </Button>
-                {user && user.id > 0 ? (
+                {user?.id > 0 ? (
                     <Button alert onPress={() => Alert.alert("Atenção", "Você já está logado.", [{ text: "OK", style: "cancel" }], { cancelable: false })}>
                         <Icone name="user-circle-o" color="#00345C" style={{ color: '#35B6B4' }} />
                     </Button>
                 ) : (
-                        <Button onPress={() => navigation.navigate('Auth')}>
-                            <Icone name="user-circle-o" color="#00345C" style={{ color: '#35B6B4' }} />
-                        </Button>
-                    )}
+                    <Button onPress={() => navigation.navigate('Auth')}>
+                        <Icone name="user-circle-o" color="#00345C" style={{ color: '#35B6B4' }} />
+                    </Button>
+                )}
             </LeadMore>
         </Body>
     );
