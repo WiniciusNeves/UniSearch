@@ -79,7 +79,7 @@ const Atletica = () => {
         formData.append('email_contato', email_contato);
 
         if (mediaUri) {
-            formData.append('foto', {
+            formData.append('photo', {
                 uri: mediaUri,
                 type: 'image/jpeg',
                 name: 'image.jpg',

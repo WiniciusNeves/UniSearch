@@ -9,7 +9,8 @@ import { useAuth } from '../../contexts/AuthContext';
 const Menu = () => {
     const navigation = useNavigation();
     const { user, logout } = useAuth();
-
+    
+   
     function handleExit() {
         Alert.alert(
             "Confirmação de Saída",

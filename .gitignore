@@ -1,8 +1,7 @@
 #back-end
 database.env
 .env
-./backend/uploads/*.sul.foto.jpg
-./backend/uploads/*.sul.video.mp4
+uploads
 
 
 # OSX
