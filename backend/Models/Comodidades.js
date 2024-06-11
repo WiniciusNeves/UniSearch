@@ -27,9 +27,24 @@ const Comodidades = sequelize.define('Comodidades', {
     video: {
         type: DataTypes.STRING,
     },
-    local: {
+    endereco: {
         type: DataTypes.STRING,
-    }
+    },
+    cep: {
+        type: DataTypes.STRING,
+    },
+    cidade: {
+        type: DataTypes.STRING,
+    },
+    uf: {
+        type: DataTypes.STRING,
+    },
+    complemento: {
+        type: DataTypes.STRING,
+    },
+    contato: {
+        type: DataTypes.STRING,
+    },
 }, {
     tableName: 'Comodidades',
     timestamps: false

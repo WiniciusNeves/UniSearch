@@ -32,12 +32,12 @@ exports.createPost = async (req, res) => {
         }
 
         try {
-            const { user_id, name, status, post_type, nome, descricao, email_contato, local, data_inicio, data_fim } = req.body;
+            const { user_id, name, status, post_type, nome, descricao, endereco, cidade, cep, uf, complemento, contato } = req.body;
 
             const requiredFields = {
                 'Atletica': ['nome', 'descricao', 'email_contato'],
                 'Aviso': ['nome', 'descricao'],
-                'Comodidade': ['nome', 'descricao', 'local'],
+                'Comodidades': ['nome', 'descricao', 'endereco', 'cidade', 'cep', 'complemento', 'contato'],
                 'Evento': ['nome', 'descricao', 'data_inicio', 'data_fim', 'local']
             };
 
@@ -68,12 +68,17 @@ exports.createPost = async (req, res) => {
                 case 'Aviso':
                     specificPost = await Aviso.create({ post_id: post.id, nome, descricao });
                     break;
-                case 'Comodidade':
+                case 'Comodidades':
                     specificPost = await Comodidades.create({
                         post_id: post.id,
                         nome,
                         descricao,
-                        local,
+                        endereco,
+                        cidade,
+                        cep,
+                        uf,
+                        complemento,
+                        contato,
                         foto: req.files['foto'] ? req.files['foto'][0].path : null,
                         video: req.files['video'] ? req.files['video'][0].path : null
                     });
@@ -96,6 +101,7 @@ exports.createPost = async (req, res) => {
 
             res.status(201).json({ post, specificPost });
         } catch (error) {
+            console.error('Erro na API:', error);
             res.status(400).json({ error: error.message });
         }
     });

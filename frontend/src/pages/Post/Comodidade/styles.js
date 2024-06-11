@@ -10,7 +10,7 @@ export const Body = styled.View`
 `
 export const Body2 = styled.View`
     width: 100%; 
-    height: ${height * .72}px;
+    height: ${height * .78}px;
     border-top-left-radius: 34px;
     border-top-right-radius: 34px;
     align-items: center;
@@ -36,22 +36,25 @@ export const Icones = styled(Icon)`
     color: #606060;
 `
 
-export const InputView = styled.View`
-    height: ${height * .42}px;
-    justify-content: flex-end;
+export const InputView = styled.ScrollView`
+    max-height: ${height * 0.4}px;
     gap: 20px;
-   
-`
+    position: absolute;
+    top: 140px;
+    overflow: scroll;
+`;
+
 export const Input = styled.TextInput`
     font-family: 'Poppins-Medium';
     font-size: 16px;
-    height: 64px;
-    width: ${width * .8}px;
+    height: 60px;
+    width: ${width * 0.8}px;
     border-radius: 10px;
     padding-left: 20px;
     background-color: #E4ECF2;
     color: #626262;
-`
+    margin-top: 20px;
+`;
 export const Button = styled.TouchableOpacity`
     height: 57px;
     width: ${width * .8}px;
