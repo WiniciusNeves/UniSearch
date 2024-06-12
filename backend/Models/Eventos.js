@@ -28,17 +28,29 @@ const Eventos = sequelize.define('Eventos', {
         type: DataTypes.STRING,
     },
     data_inicio: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
     },
     data_fim: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
     },
     email_contato: {
         type: DataTypes.STRING,
     },
-    local: {
+    endereco: {
         type: DataTypes.STRING,
-    }
+    },
+    cep: {
+        type: DataTypes.STRING,
+    },
+    cidade: {
+        type: DataTypes.STRING,
+    },
+    uf: {
+        type: DataTypes.STRING,
+    },
+    complemento: {
+        type: DataTypes.STRING,
+    },
 }, {
     tableName: 'Eventos',
     timestamps: false

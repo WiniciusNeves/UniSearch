@@ -11,7 +11,7 @@ export const Body = styled.View`
 
 export const Body2 = styled.View`
     width: 100%; 
-    height: ${height * 0.7}px;
+    height: ${height * 0.8}px;
     border-top-left-radius: 34px;
     border-top-right-radius: 34px;
     align-items: center;

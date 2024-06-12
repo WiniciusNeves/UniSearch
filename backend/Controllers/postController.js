@@ -32,13 +32,13 @@ exports.createPost = async (req, res) => {
         }
 
         try {
-            const { user_id, name, status, post_type, nome, descricao, endereco, cidade, cep, uf, complemento, contato } = req.body;
+            const { user_id, name, status, post_type, nome, descricao, endereco, cidade, cep, uf, complemento, contato , email_contato, data_inicio, data_fim} = req.body;
 
             const requiredFields = {
                 'Atletica': ['nome', 'descricao', 'email_contato'],
                 'Aviso': ['nome', 'descricao'],
                 'Comodidades': ['nome', 'descricao', 'endereco', 'cidade', 'cep', 'complemento', 'contato'],
-                'Evento': ['nome', 'descricao', 'data_inicio', 'data_fim', 'local']
+                'Eventos': ['nome', 'descricao', 'data_inicio', 'data_fim', 'endereco', 'cidade', 'cep', 'uf', 'complemento', 'email_contato']
             };
 
             if (!post_type || !requiredFields[post_type]) {
@@ -83,14 +83,19 @@ exports.createPost = async (req, res) => {
                         video: req.files['video'] ? req.files['video'][0].path : null
                     });
                     break;
-                case 'Evento':
+                case 'Eventos':
                     specificPost = await Eventos.create({
                         post_id: post.id,
                         nome,
                         descricao,
                         data_inicio,
                         data_fim,
-                        local,
+                        endereco,
+                        cidade,
+                        cep,
+                        uf,
+                        complemento,
+                        email_contato,
                         foto: req.files['foto'] ? req.files['foto'][0].path : null,
                         video: req.files['video'] ? req.files['video'][0].path : null
                     });
