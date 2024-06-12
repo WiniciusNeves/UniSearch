@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Body, Body2, Circular, Input, InputView, Button, ButtonText, BackButton, Text, Icones } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { Colors } from "react-native/Libraries/NewAppScreen";
-import { Image, StyleSheet, Alert } from "react-native";
+import { Image, StyleSheet, Alert, TouchableOpacity } from "react-native";
 import Toast from 'react-native-toast-message';
-
-import api from '../../../api/api';
 import { launchImageLibrary } from 'react-native-image-picker';
 import { useAuth } from '../../../contexts/AuthContext';
+import moment from 'moment';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+import api from '../../../api/api';
 
 const Evento = () => {
     const navigation = useNavigation();
@@ -24,6 +25,41 @@ const Evento = () => {
     const [videoUri, setVideoUri] = useState(null);
     const [data_inicio, setDataInicio] = useState('');
     const [data_fim, setDataFim] = useState('');
+
+    const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+    const [selectedDateField, setSelectedDateField] = useState(null);
+    useEffect(() => {
+        if (data_inicio && !moment(data_inicio, 'DD/MM/YYYY', true).isValid()) {
+            const formattedDataInicio = moment(data_inicio, 'DD/MM/YYYY').toDate();
+            setDataInicio(formattedDataInicio);
+        }
+        if (data_fim && !moment(data_fim, 'DD/MM/YYYY', true).isValid()) {
+            const formattedDataFim = moment(data_fim, 'DD/MM/YYYY').toDate();
+            setDataFim(formattedDataFim);
+        }
+    }, [data_inicio, data_fim]);
+
+
+    // Função para lidar com a seleção de uma data
+    const handleConfirmDate = (date) => {
+        if (selectedDateField === 'data_inicio') {
+            setDataInicio(moment(date).format('DD/MM/YYYY'));
+        } else if (selectedDateField === 'data_fim') {
+            setDataFim(moment(date).format('DD/MM/YYYY'));
+        }
+        hideDatePicker();
+    };
+
+    // Função para exibir o seletor de data
+    const showDatePicker = (field) => {
+        setSelectedDateField(field);
+        setDatePickerVisibility(true);
+    };
+
+    // Função para ocultar o seletor de data
+    const hideDatePicker = () => {
+        setDatePickerVisibility(false);
+    };
 
     const handleMediaPicker = async (mediaType) => {
         const options = {
@@ -83,8 +119,8 @@ const Evento = () => {
         formData.append('post_type', 'Eventos');
         formData.append('nome', title);
         formData.append('descricao', descricao);
-        formData.append('data_inicio', data_inicio);
-        formData.append('data_fim', data_fim);
+        formData.append('data_inicio', moment(data_inicio, 'DD/MM/YYYY').format('YYYY-MM-DD'));
+        formData.append('data_fim', moment(data_fim, 'DD/MM/YYYY').format('YYYY-MM-DD'));
         formData.append('endereco', endereco);
         formData.append('cidade', cidade);
         formData.append('cep', cep);
@@ -138,7 +174,6 @@ const Evento = () => {
             toastError();
         }
     };
-
     return (
         <>
             <Body>
@@ -204,18 +239,24 @@ const Evento = () => {
                         value={email_contato}
                         onChangeText={setEmail_Contato}
                     />
-                    <Input
-                        placeholder="Data de Início"
-                        placeholderTextColor="#626262"
-                        value={data_inicio}
-                        onChangeText={setDataInicio}
-                    />
-                    <Input
-                        placeholder="Data de Fim"
-                        placeholderTextColor="#626262"
-                        value={data_fim}
-                        onChangeText={setDataFim}
-                    />
+                    <TouchableOpacity onPress={() => showDatePicker('data_inicio')}>
+                        <Input
+                            placeholder="Data de Início (dd/mm/yyyy)"
+                            placeholderTextColor="#626262"
+                            value={data_inicio}
+                            onChangeText={setDataInicio}
+                            editable={false} // para evitar a edição direta
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => showDatePicker('data_fim')}>
+                        <Input
+                            placeholder="Data de Fim (dd/mm/yyyy)"
+                            placeholderTextColor="#626262"
+                            value={data_fim}
+                            onChangeText={setDataFim}
+                            editable={false} // para evitar a edição direta
+                        />
+                    </TouchableOpacity>
                 </InputView>
                 <Button onPress={() => handleMediaPicker('video')} style={{ opacity: mediaUri ? 1 : 0.5, position: 'absolute', bottom: 120 }}>
                     <ButtonText>Vídeo (Opcional)</ButtonText>
@@ -223,6 +264,13 @@ const Evento = () => {
                 <Button onPress={handlePost} style={{ position: 'absolute', bottom: 50 }}>
                     <ButtonText>Cadastrar</ButtonText>
                 </Button>
+
+                <DateTimePickerModal
+                    isVisible={isDatePickerVisible}
+                    mode="date"
+                    onConfirm={handleConfirmDate}
+                    onCancel={hideDatePicker}
+                />
             </Body2>
         </>
     );
@@ -237,3 +285,5 @@ const styles = StyleSheet.create({
 });
 
 export default Evento;
+
+

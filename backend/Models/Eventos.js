@@ -28,10 +28,10 @@ const Eventos = sequelize.define('Eventos', {
         type: DataTypes.STRING,
     },
     data_inicio: {
-        type: DataTypes.STRING,
+        type: DataTypes.DATE,
     },
     data_fim: {
-        type: DataTypes.STRING,
+        type: DataTypes.DATE,
     },
     email_contato: {
         type: DataTypes.STRING,
