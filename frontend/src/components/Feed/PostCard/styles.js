@@ -8,7 +8,7 @@ export const Quadrado = styled.View`
   height: ${height * 0.30}px;
   border-radius: 30px;
   background-color: #E4ECF2;
-  margin-left: ${width * 0.05}px;
+  margin-left: ${width * 0.10}px;
 `
 export const AlignCircle = styled.View`
   display: flex;

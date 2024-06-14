@@ -79,7 +79,7 @@ const Atletica = () => {
         formData.append('email_contato', email_contato);
 
         if (mediaUri) {
-            formData.append('photo', {
+            formData.append('foto', {
                 uri: mediaUri,
                 type: 'image/jpeg',
                 name: 'image.jpg',
@@ -105,6 +105,8 @@ const Atletica = () => {
             } else {
                 console.error('Erro na API:', response);
                 toastError();
+                console.log('Dados do FormData:', formData);
+
             }
         } catch (error) {
             console.error('Erro na API:', error);

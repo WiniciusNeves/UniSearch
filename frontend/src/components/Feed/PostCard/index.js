@@ -1,26 +1,42 @@
-import { Quadrado, AlignCircle, Circle, Text } from "./styles";
-import { View } from "react-native";
+import React from "react";
+import { View, Image } from "react-native";
+import { Quadrado, AlignCircle, Circle, Text } from "./styles"; 
 
-const QuadradoElement = () => (
+const QuadradoElement = ({ foto, titulo, dataInicio, username, userfoto }) => {
+  if (!foto && !titulo && !data && !username && !userfoto) {
+    return <Text>Nada para exibir :(</Text>;
+  }
+
+  return (
     <Quadrado>
-      <Text style={{ color: '#00345C', fontSize: 15, marginLeft: 20, marginTop: 10, marginBottom: 120, opacity: 100 }}>
-        images
-      </Text>
-      <Text style={{ color: '#00345C', fontSize: 15, left: 20, opacity: 100 }}>
-        Titulo
-      </Text>
+      {foto && <Image source={{ uri: foto }} style={{ width: 200, height: 150, borderRadius: 10, marginTop: 20, marginLeft: 13 }} />}
+      {titulo && (
+        <Text style={{ color: "black", fontSize: 15, marginLeft: 20, marginTop: 10 }}>
+          {titulo}
+        </Text>
+      )}
+
       <AlignCircle>
-        <Circle />
-        <View style={{ marginLeft: 5}}>
-          <Text style={{ color: '#19202D', fontSize: 12, opacity: 100 }}>
-            nome de usuario
-          </Text>
-          <Text style={{ color: '#9397A0', fontSize: 12, fontFamily: 'Poppins-Regular', opacity: 100 }}>
-            00/00/0000
-          </Text>
+        <View style={{ flexDirection: "row", marginTop: 10 }}>
+          {userfoto && (
+            <Circle source={{ uri: userfoto }} style={{ width: 40, height: 40, borderRadius: 20 }} />
+          )}
+          {username && (
+            <View style={{ marginLeft: 5 }}>
+              <Text style={{ color: "#00345C", fontSize: 12 }}>
+                {username}
+              </Text>
+              {dataInicio && (
+                <Text style={{ color: "#00345C", fontSize: 12 }}>
+                  {dataInicio}
+                </Text>
+              )}
+            </View>
+          )}
         </View>
       </AlignCircle>
     </Quadrado>
   );
-  
+};
+
 export default QuadradoElement;

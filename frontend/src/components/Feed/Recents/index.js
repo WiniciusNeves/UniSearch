@@ -1,20 +1,25 @@
-import { Text, Recentes, Retangulo } from "./styles";
+import React from 'react';
+import { Text, Recentes, Retangulo, ImageView } from "./styles";
+import { Image, TouchableOpacity } from 'react-native';
 
-const Recents = () => (
+const Recents = ({ foto, title, id }) => {
+    if (!title) {
+        return <Text>Nenhum título para exibir</Text>;
+    }
 
-    <Recentes>
-        <Text style={{ fontSize: 17, color: '#00345C', fontFamily: 'Poppins-Bold', marginLeft: 20, marginTop: 40, opacity: 100 }}>
-            Recentes
-        </Text>
-        <Retangulo>
-            <Text style={{ fontSize: 20, color: '#00345C', fontWeight: 'bold' }}>
-                images
-            </Text>
-            <Text style={{ fontSize: 20, color: '#00345C', marginLeft: 50, fontWeight: 'bold', alignItems: 'center' }}>
-                Titulo
-            </Text>
-        </Retangulo>
-    </Recentes>
-);
+    return (
+        <TouchableOpacity onPress={() => console.log(id)}>
+            <Recentes>
+                <Retangulo>
+                    <ImageView>
+                        {foto && <Image source={{ uri: foto }} style={{ width: 70, height: 70, borderRadius: 10 }} />}
+                    </ImageView>
+                    <Text style={{ color: "#626262", fontWeight: 'bold', fontSize: 12, marginLeft: 100, width: 240 }}>{title}</Text>
+                </Retangulo>
+            </Recentes>
+        </TouchableOpacity>
+    );
+};
 
 export default Recents;
+

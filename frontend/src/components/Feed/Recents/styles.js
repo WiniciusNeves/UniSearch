@@ -7,7 +7,7 @@ export const Recentes = styled.View`
 `
 export const Retangulo = styled.View`
   width: ${width * 0.8}px;
-  height: ${height * 0.08}px;
+  height: ${height * 0.10}px;
   margin-top: ${height * 0.02}px;
   margin-left: ${width * 0.08}px;
   border-radius: 30px;
@@ -21,4 +21,9 @@ export const Text = styled.Text`
   font-size: 16px;
   color: black;
   opacity: 0.43;
+`
+export const ImageView = styled.View`
+ position: absolute;
+ left: 20px;
+ 
 `

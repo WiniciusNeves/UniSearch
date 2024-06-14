@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 const Post = require('./Post');
+const User = require('./User');
 
 const Eventos = sequelize.define('Eventos', {
     id: {
@@ -10,8 +11,9 @@ const Eventos = sequelize.define('Eventos', {
     },
     post_id: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         references: {
-            model: Post,
+            model: 'Posts', // Nome da tabela, não do modelo
             key: 'id'
         }
     },
@@ -28,10 +30,10 @@ const Eventos = sequelize.define('Eventos', {
         type: DataTypes.STRING,
     },
     data_inicio: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
     },
     data_fim: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
     },
     email_contato: {
         type: DataTypes.STRING,

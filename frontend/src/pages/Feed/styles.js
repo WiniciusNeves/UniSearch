@@ -36,7 +36,7 @@ export const ScrollView = styled.ScrollView`
   overflow: scroll;
   flex: 1;
   paddingHorizontal: ${width * 0.04}px;
-  max-width: ${width * .9}px;
+  max-width: ${width * .9 }px;
   z-index: 1;
 `
 export const Container = styled.View`
