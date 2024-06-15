@@ -123,7 +123,7 @@ exports.createPost = async (req, res) => {
 exports.getAllPosts = async (req, res) => {
     try {
         // Busca todas as postagens gerais
-        const posts = await Post.findAll({ attributes: ['id', 'post_type', 'status'] });
+        const posts = await Post.findAll({ attributes: ['id', 'post_type', 'status', 'user_id'] });
 
         if (!posts || posts.length === 0) {
             return res.status(404).json({ error: 'Posts not found' });
@@ -179,6 +179,55 @@ exports.getAllPosts = async (req, res) => {
         }
 
         res.status(200).json(allPosts);
+    } catch (error) {
+        console.error('API Error:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+exports.getPostById = async (req, res) => {
+    const { id } = req.params;
+    console.log('Received ID:', id); // Log para verificar o ID recebido
+    try {
+        const user = await User.findAll({ attributes: ['id', 'username'] });
+        const post = await Post.findByPk(id);
+        if (!post) {
+            console.log('Post not found with ID:', id); // Log quando o post não é encontrado
+            return res.status(404).json({ error: 'Post not found' });
+        }
+
+        let specificPost;
+        switch (post.post_type) {
+            case 'Atletica':
+                specificPost = await Atletica.findOne({ where: { post_id: id } });
+                break;
+            case 'Aviso':
+                specificPost = await Aviso.findOne({ where: { post_id: id } });
+                break;
+            case 'Comodidades':
+                specificPost = await Comodidades.findOne({ where: { post_id: id } });
+                break;
+            case 'Eventos':
+                specificPost = await Eventos.findOne({ where: { post_id: id } });
+                break;
+            default:
+                console.log('Invalid post type:', post.post_type); // Log quando o tipo de postagem é inválido
+                throw new Error('Tipo de postagem inválido');
+        }
+
+        if (!specificPost) {
+            console.log('Specific post details not found for ID:', id); // Log quando os detalhes específicos não são encontrados
+            return res.status(404).json({ error: 'Specific post details not found' });
+        }
+
+        // Formatar URLs das imagens e vídeos para serem acessíveis via HTTP, se existirem
+        if (specificPost.foto) {
+            specificPost.foto = `${req.protocol}://${req.get('host')}/uploads/${path.basename(specificPost.foto)}`;
+        }
+        if (specificPost.video) {
+            specificPost.video = `${req.protocol}://${req.get('host')}/uploads/${path.basename(specificPost.video)}`;
+        }
+
+        res.status(200).json({ ...post.toJSON(), specificPost, user });
     } catch (error) {
         console.error('API Error:', error);
         res.status(500).json({ error: 'Internal server error' });

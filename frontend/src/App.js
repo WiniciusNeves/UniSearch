@@ -1,8 +1,7 @@
-// App.js
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { AuthProvider } from './contexts/AuthContext';  // Importando o AuthProvider
+import { AuthProvider } from './contexts/AuthContext';
 import Load from './pages/Load';
 import Auth from './pages/Auth';
 import Register from './pages/Register';
@@ -14,8 +13,7 @@ import Aviso from './pages/Post/Aviso';
 import Eventos from './pages/Post/Eventos';
 import Comodidade from './pages/Post/Comodidade';
 import Atletica from './pages/Post/Atletica';
-
-import api from './api/api';
+import Detail from './pages/Detail';
 
 const Stack = createStackNavigator();
 
@@ -35,6 +33,7 @@ function App() {
           <Stack.Screen name="Eventos" component={Eventos} options={{ headerShown: false }} />
           <Stack.Screen name="Comodidade" component={Comodidade} options={{ headerShown: false }} />
           <Stack.Screen name="Atletica" component={Atletica} options={{ headerShown: false }} />
+          <Stack.Screen name="Detail" component={Detail} options={{ headerShown: false }} />
         </Stack.Navigator>
       </NavigationContainer>
     </AuthProvider>
@@ -42,4 +41,3 @@ function App() {
 }
 
 export default App;
-

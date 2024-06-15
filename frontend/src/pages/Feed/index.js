@@ -79,10 +79,10 @@ export default function Feed() {
         {user && (
           <RNScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{ flexDirection: 'row' }} style={{ position: 'relative', top: 1, left: -20, maxWidth: 9999 }}>
             {posts.length > 0 && posts.map(post => (
-              post.postType.map(item => (
+              Array.isArray(post.postType) && post.postType.map(item => (
                 <QuadradoElement
-                  key={item.id}
-                  id={item.id}
+                  key={`${post.id}-${item.id}`}
+                  id={post.id}
                   foto={item.foto}
                   titulo={item.nome}
                   dataInicio={item.dataInicio}
@@ -90,19 +90,24 @@ export default function Feed() {
                   userFoto={user.foto}
                 />
               ))
-            )).filter(Boolean)}
+            ))}
           </RNScrollView>
         )}
         <Text style={{ color: '#00345C', fontFamily: 'Poppins-Bold', fontSize: 17, marginLeft: 20, marginBottom: 10 }}>
           Recentes
         </Text>
         {posts.length > 0 && posts.map(post => (
-          post.postType.map(item => (
-            <Recents key={item.id} foto={item.foto} title={item.nome} id={item.id} />
+          Array.isArray(post.postType) && post.postType.map(item => (
+            <Recents 
+              key={`${post.id}-${item.id}`} 
+              foto={item.foto} 
+              title={item.nome} 
+              id={post.id} 
+            />
           ))
         ))}
       </ScrollViewBaixo>
       <Menu />
-    </Body >
+    </Body>
   );
 }

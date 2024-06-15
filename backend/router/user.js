@@ -8,5 +8,6 @@ router.post('/auth/login', userController.loginUser);
 router.put('/updateUser', userController.upload, userController.updateUser);
 router.post('/createPost', postController.createPost);
 router.get('/getAllPosts', postController.getAllPosts, postController.upload);
+router.get('/getPostById/:id', postController.getPostById);
 
 module.exports = router;
