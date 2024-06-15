@@ -52,7 +52,7 @@ export default function Feed() {
         />
       </ImageView>
       <View>
-        <Input placeholder="Clique para pesquisar..." placeholderTextColor="#A7A7A7" style={{ textAlign: 'left', paddingLeft: 20 }} />
+        <Input placeholder="Clique para pesquisar..." placeholderTextColor="#A7A7A7" style={{ textAlign: 'left', paddingLeft: 20, paddingRight: 70 }} />
         <SearchIcon name="search" style={{ position: 'absolute', right: 45, top: -135, color: '#35B6B4' }} />
       </View>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ flexDirection: 'row', paddingLeft: 20 }}>
