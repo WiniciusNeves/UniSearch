@@ -1,26 +1,35 @@
 import React from 'react';
-import { Alert } from 'react-native';
+import { View } from 'react-native';
 import { Menu, HomeIcon, HamburguerIcon, Button, ButtonPost, TextPost, Icone } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { useAuth } from '../../../contexts/AuthContext';
+import { useToast } from '../../../contexts/toastContext';
 
 const MenuFeed = () => {
     const { user } = useAuth();
+    const { show } = useToast();
     const navigation = useNavigation();
+    
+    const toastVerify = () => {
+        show({
+          type: "error",
+          text1: "Acesso restrito.",
+          text2: "Você precisa entrar como administrador para acessar a página.",
+          autoHide: true,
+          visibilityTime: 3500,
+        });
+      };
     
     const handlePostPress = () => {
         if (user?.role === 'admin' || user?.role === 'representante') {
             navigation.navigate('MenuResgister');
         } else {
-            Alert.alert(
-                'Acesso Restrito',
-                'Você precisa ser um administrador ou representante para acessar essa página.',
-                [{ text: 'OK', style: 'cancel' }]
-            );
+            toastVerify()
         }
     };
 
     return (
+        <>
         <Menu>
             <Button onPress={() => navigation.navigate('Feed')}>
                 <HomeIcon name="home" />
@@ -35,6 +44,7 @@ const MenuFeed = () => {
                 <HamburguerIcon name="navicon" />
             </Button>
         </Menu>
+        </>
     );
 }
 
