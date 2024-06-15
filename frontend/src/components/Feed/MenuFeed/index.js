@@ -7,21 +7,23 @@ import { useToast } from '../../../contexts/toastContext';
 
 const MenuFeed = () => {
     const { user } = useAuth();
-    const { show } = useToast();
+    const { show } = useToast() || {};
     const navigation = useNavigation();
     
     const toastVerify = () => {
-        show({
-          type: "error",
-          text1: "Acesso restrito.",
-          text2: "Você precisa entrar como administrador para acessar a página.",
-          autoHide: true,
-          visibilityTime: 3500,
-        });
-      };
+        if (show) {
+            show({
+            type: "error",
+            text1: "Acesso restrito.",
+            text2: "Você precisa entrar como administrador para acessar a página.",
+            autoHide: true,
+            visibilityTime: 3500,
+            });
+        }
+    };
     
     const handlePostPress = () => {
-        if (user?.role === 'admin' || user?.role === 'representante') {
+        if ((user?.role === 'admin' || user?.role === 'representante') && show) {
             navigation.navigate('MenuResgister');
         } else {
             toastVerify()
