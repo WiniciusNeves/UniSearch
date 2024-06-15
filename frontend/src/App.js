@@ -1,7 +1,12 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+<<<<<<< HEAD
 import { AuthProvider } from './contexts/AuthContext';
+=======
+import { AuthProvider } from './contexts/AuthContext';  
+import { ToastProvider } from '../src/contexts/toastContext';
+>>>>>>> 0e5a411f921880bed16f1de9d656790c9b7c4717
 import Load from './pages/Load';
 import Auth from './pages/Auth';
 import Register from './pages/Register';

@@ -51,6 +51,7 @@ export const Text = styled.Text`
 `
 export const Button = styled.TouchableOpacity`
     margin-top: 10px;
+
 `
 export const LeadMore = styled.View`
     background-color: #E4ECF2;
@@ -74,5 +75,5 @@ export const ButtonText = styled.View`
     justify-content: center;
     margin-top: 20px;
     border-radius: 40px;
-    border: 2px solid #000000;    
+    border: 2px solid #626262;    
 `

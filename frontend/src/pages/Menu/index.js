@@ -62,9 +62,9 @@ const Menu = () => {
                             { cancelable: false }
                         )
                     }>
-                        <ButtonText style={{ flexDirection: 'row', alignItems: 'center', opacity: 0.5 }}>
-                            <Icone name="lock" color="#333333" style={{ textAlign: 'left' }} />
-                            <Text style={{ color: '#333333', fontFamily: 'Poppins-SemiBold', fontSize: 16, fontWeight: 'bold' }}>Admin</Text>
+                        <ButtonText style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <Icone name="lock" color="#333333" style={{ textAlign: 'left', paddingRight: 10 }} />
+                            <Text style={{ color: 'black', fontFamily: 'Poppins-SemiBold', fontSize: 16, fontWeight: 'bold', opacity: 0.8 }}>Admin</Text>
                         </ButtonText>
                     </Button>
                 </Apa>

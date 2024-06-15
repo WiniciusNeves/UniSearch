@@ -2746,7 +2746,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sequelize/core@alpha":
+"@sequelize/core@npm:alpha":
   version: 7.0.0-alpha.41
   resolution: "@sequelize/core@npm:7.0.0-alpha.41"
   dependencies:
