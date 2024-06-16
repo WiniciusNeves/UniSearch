@@ -6,32 +6,31 @@ import { useAuth } from '../../../contexts/AuthContext';
 import { useToast } from '../../../contexts/toastContext';
 
 const MenuFeed = () => {
-    const { user } = useAuth();
+    const { user } = useAuth() || {};  // Definir user como um objeto vazio por padrão se useAuth() retornar null
     const { show } = useToast() || {};
     const navigation = useNavigation();
-    
+
     const toastVerify = () => {
         if (show) {
             show({
-            type: "error",
-            text1: "Acesso restrito.",
-            text2: "Você precisa entrar como administrador para acessar a página.",
-            autoHide: true,
-            visibilityTime: 3500,
+                type: "error",
+                text1: "Acesso restrito.",
+                text2: "Você precisa entrar como administrador para acessar a página.",
+                autoHide: true,
+                visibilityTime: 3500,
             });
         }
     };
-    
+
     const handlePostPress = () => {
-        if ((user?.role === 'admin' || user?.role === 'representante') && show) {
+        if (user && (user.role === 'admin' || user.role === 'representante')) {
             navigation.navigate('MenuResgister');
         } else {
-            toastVerify()
+            toastVerify();
         }
     };
 
     return (
-        <>
         <Menu>
             <Button onPress={() => navigation.navigate('Feed')}>
                 <HomeIcon name="home" />
@@ -46,7 +45,6 @@ const MenuFeed = () => {
                 <HamburguerIcon name="navicon" />
             </Button>
         </Menu>
-        </>
     );
 }
 

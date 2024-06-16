@@ -66,7 +66,13 @@ export const Body2 = styled.View`
   bottom: 0;
 `
 
-export const ScrollView = styled.View`
-  
-`
+export const ScrollView = styled.ScrollView`
+  overflow: scroll;
+  paddingHorizontal: ${width * 0.04}px;
+  max-width: ${width * .9}px;
+  z-index: 1;
+  max-height: ${height * 0.5}px;
+  position: absolute;
+  bottom: 0;
 
+`

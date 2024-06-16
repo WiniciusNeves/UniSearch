@@ -9,5 +9,7 @@ router.put('/updateUser', userController.upload, userController.updateUser);
 router.post('/createPost', postController.createPost);
 router.get('/getAllPosts', postController.getAllPosts, postController.upload);
 router.get('/getPostById/:id', postController.getPostById);
+router.put('/updatePost/:id', postController.updatePost);
+router.delete('/deletePost/:id', postController.deletePost);
 
 module.exports = router;

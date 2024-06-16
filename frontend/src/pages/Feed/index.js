@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Image, View, Text, RefreshControl, ScrollView as RNScrollView } from "react-native";
 import { Body, ImageView, Input, Container, ScrollViewBaixo, SearchIcon, ScrollView } from "./styles";
 import ButtonElement from "../../components/Feed/HashtagButtons/index";
-import QuadradoElement from "../../components/Feed/PostCard/index"; // Certifique-se de que o caminho está correto
+import QuadradoElement from "../../components/Feed/PostCard/index";
 import Recents from "../../components/Feed/Recents/index";
 import Menu from "../../components/Feed/MenuFeed/index";
 import { useAuth } from '../../contexts/AuthContext';
@@ -24,7 +24,7 @@ export default function Feed() {
       const response = await api.get('/getAllPosts');
       if (response.status === 200) {
         setPosts(response.data || []);
-        setLoading(false); // Marca o carregamento como completo após a carga dos dados
+        setLoading(false); 
       } else {
         throw new Error('Received status other than 200 when fetching posts');
       }

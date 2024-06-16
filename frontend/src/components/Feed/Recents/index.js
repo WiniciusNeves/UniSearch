@@ -17,7 +17,7 @@ const Recents = ({ foto, title, id , postId}) => {
                         {foto && <Image source={{ uri: foto }} style={{ width: 70, height: 70, borderRadius: 10 }} />}
                     </ImageView>
                     <Text style={{ color: "#626262", fontWeight: 'bold', fontSize: 12, marginLeft: 100, width: 180, height: 20, position: 'absolute', left: 10 }} numberOfLines={1} ellipsizeMode="tail">{title}</Text>
-                    <Text style={{ color: "#626262", fontWeight: 'bold', fontSize: 12, marginLeft: 100, width: 240 }}>{id}</Text>
+
                 </Retangulo>
             </Recentes>
         </TouchableOpacity>

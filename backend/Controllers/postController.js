@@ -233,3 +233,91 @@ exports.getPostById = async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 };
+
+exports.updatePost = async (req, res) => {
+    const { id } = req.params;
+    const { name, status, ...specificData } = req.body; // Assume os campos específicos vêm no corpo da requisição
+
+    try {
+        const post = await Post.findByPk(id);
+        if (!post) {
+            return res.status(404).json({ error: 'Post not found' });
+        }
+
+        // Atualiza os campos gerais da tabela Post
+        await post.update({ name, status });
+
+        // Atualiza os detalhes específicos da postagem com base no tipo de postagem
+        let specificPost;
+        switch (post.post_type) {
+            case 'Atletica':
+                specificPost = await Atletica.findOne({ where: { post_id: id } });
+                if (specificPost) {
+                    await specificPost.update(specificData);
+                }
+                break;
+            case 'Aviso':
+                specificPost = await Aviso.findOne({ where: { post_id: id } });
+                if (specificPost) {
+                    await specificPost.update(specificData);
+                }
+                break;
+            case 'Comodidades':
+                specificPost = await Comodidades.findOne({ where: { post_id: id } });
+                if (specificPost) {
+                    await specificPost.update(specificData);
+                }
+                break;
+            case 'Eventos':
+                specificPost = await Eventos.findOne({ where: { post_id: id } });
+                if (specificPost) {
+                    await specificPost.update(specificData);
+                }
+                break;
+            default:
+                return res.status(400).json({ error: 'Invalid post type' });
+        }
+
+        res.status(200).json({ message: 'Post updated successfully', specificPost });
+    } catch (error) {
+        console.error('API Error:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
+
+exports.deletePost = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const post = await Post.findByPk(id);
+        if (!post) {
+            return res.status(404).json({ error: 'Post not found' });
+        }
+
+        // Deleta o registro da tabela específica baseado no post_type
+        switch (post.post_type) {
+            case 'Atletica':
+                await Atletica.destroy({ where: { post_id: id } });
+                break;
+            case 'Aviso':
+                await Aviso.destroy({ where: { post_id: id } });
+                break;
+            case 'Comodidades':
+                await Comodidades.destroy({ where: { post_id: id } });
+                break;
+            case 'Eventos':
+                await Eventos.destroy({ where: { post_id: id } });
+                break;
+            default:
+                throw new Error('Invalid post type');
+        }
+
+        // Deleta o registro da tabela Post após deletar o específico
+        await post.destroy();
+
+        res.status(200).json({ message: 'Post deleted successfully' });
+    } catch (error) {
+        console.error('API Error:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};

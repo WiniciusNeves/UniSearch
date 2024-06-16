@@ -15,6 +15,8 @@ import Comodidade from './pages/Post/Comodidade';
 import Atletica from './pages/Post/Atletica';
 import Detail from './pages/Detail';
 
+import Edit from './pages/Edit';
+
 const Stack = createStackNavigator();
 
 function App() {
@@ -34,6 +36,7 @@ function App() {
           <Stack.Screen name="Comodidade" component={Comodidade} options={{ headerShown: false }} />
           <Stack.Screen name="Atletica" component={Atletica} options={{ headerShown: false }} />
           <Stack.Screen name="Detail" component={Detail} options={{ headerShown: false }} />
+          <Stack.Screen name="Edit" component={Edit} options={{ headerShown: false }} />
         </Stack.Navigator>
       </NavigationContainer>
     </AuthProvider>
