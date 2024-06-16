@@ -81,11 +81,11 @@ const DetailScreen = () => {
         )}
 
         <ScrollView
-          style={{ paddingHorizontal: 20 }}
+          style={{ paddingHorizontal: 20 , position: 'relative', top: -20}}
           vertical={true}
-          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />}
+          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={handleRefresh}/>}
         >
-          <View style={{ marginTop: 40, paddingHorizontal: 20 }}>
+          <View style={{ marginTop: 40, paddingHorizontal: 20  }}>
             <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#19202D', textAlign: 'center' }}>
               {post.specificPost.nome}
             </Text>
@@ -109,21 +109,31 @@ const DetailScreen = () => {
               {post.specificPost.descricao}
             </Text>
 
-            <Text style={{ fontSize: 16, color: '#19202D', marginTop: 20 }}>
-              Endereço: {post.specificPost.endereco}
-            </Text>
-            <Text style={{ fontSize: 16, color: '#19202D' }}>
-              Cidade: {post.specificPost.cidade}, {post.specificPost.uf}
-            </Text>
-            <Text style={{ fontSize: 16, color: '#19202D' }}>
-              CEP: {post.specificPost.cep}
-            </Text>
-            <Text style={{ fontSize: 16, color: '#19202D' }}>
-              Complemento: {post.specificPost.complemento}
-            </Text>
-            <Text style={{ fontSize: 16, color: '#19202D' }}>
-              Email: {post.specificPost.email_contato}
-            </Text>
+            {post.specificPost?.endereco && (
+              <Text style={{ fontSize: 16, color: '#19202D', marginTop: 20 }}>
+                Endereço: {post.specificPost.endereco}
+              </Text>
+            )}
+            {post.specificPost?.cidade && post.specificPost?.uf && (
+              <Text style={{ fontSize: 16, color: '#19202D' }}>
+                Cidade: {post.specificPost.cidade}, {post.specificPost.uf}
+              </Text>
+            )}
+            {post.specificPost?.cep && (
+              <Text style={{ fontSize: 16, color: '#19202D' }}>
+                CEP: {post.specificPost.cep}
+              </Text>
+            )}
+            {post.specificPost?.complemento && (
+              <Text style={{ fontSize: 16, color: '#19202D' }}>
+                Complemento: {post.specificPost.complemento}
+              </Text>
+            )}
+            {post.specificPost?.email_contato && (
+              <Text style={{ fontSize: 16, color: '#19202D' }}>
+                Email: {post.specificPost.email_contato}
+              </Text>
+            )}
           </View>
 
           {post.specificPost.video && (
