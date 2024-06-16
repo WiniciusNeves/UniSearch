@@ -11,6 +11,9 @@ import api from "../../api/api";
 export default function Feed() {
   const { user } = useAuth();
   const [posts, setPosts] = useState([]);
+  const [filteredPosts, setFilteredPosts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedFilter, setSelectedFilter] = useState('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
@@ -19,11 +22,16 @@ export default function Feed() {
     fetchPosts();
   }, []);
 
+  useEffect(() => {
+    filterPosts();
+  }, [searchTerm, posts, selectedFilter]);
+
   const fetchPosts = async () => {
     try {
       const response = await api.get('/getAllPosts');
       if (response.status === 200) {
         setPosts(response.data || []);
+        setFilteredPosts(response.data || []);
         setLoading(false); 
       } else {
         throw new Error('Received status other than 200 when fetching posts');
@@ -31,7 +39,7 @@ export default function Feed() {
     } catch (error) {
       console.error('Error fetching posts:', error.message);
       setError('Error fetching posts. Please check your connection and try again.');
-      setLoading(false); // Importante marcar o carregamento como completo mesmo em caso de erro
+      setLoading(false);
     } finally {
       setRefreshing(false);
     }
@@ -40,6 +48,35 @@ export default function Feed() {
   const handleRefresh = () => {
     setRefreshing(true);
     fetchPosts();
+  };
+
+  const filterPosts = () => {
+    let filtered = posts;
+
+    if (searchTerm !== '') {
+      filtered = filtered.filter(post => 
+        post.postType.some(item => 
+          item.nome.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      );
+    }
+
+    if (selectedFilter !== '') {
+      filtered = filtered.filter(post => 
+        post.post_type.toLowerCase() === selectedFilter.toLowerCase()
+      );
+    }
+
+    setFilteredPosts(filtered);
+  };
+
+  const handleFilterChange = (filter) => {
+    setSelectedFilter(filter);
+  };
+
+  const resetFilters = () => {
+    setSearchTerm('');
+    setSelectedFilter('');
   };
 
   return (
@@ -52,15 +89,15 @@ export default function Feed() {
         />
       </ImageView>
       <View>
-        <Input placeholder="Clique para pesquisar..." placeholderTextColor="#A7A7A7" style={{ textAlign: 'left', paddingLeft: 20, paddingRight: 70 }} />
+        <Input placeholder="Clique para pesquisar..." placeholderTextColor="#A7A7A7" style={{ paddingLeft: 20, paddingRight: 70 }} onChangeText={setSearchTerm} value={searchTerm} />
         <SearchIcon name="search" style={{ position: 'absolute', right: 45, top: -135, color: '#35B6B4' }} />
       </View>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ flexDirection: 'row', paddingLeft: 20 }}>
         <Container>
-          <ButtonElement backgroundColor={'#B5DEDD'} text={'#avisos'} />
-          <ButtonElement backgroundColor={'#A09FC3'} text={'#eventos'} />
-          <ButtonElement backgroundColor={'#DECBB5'} text={'#comodidades'} />
-          <ButtonElement backgroundColor={'#B5DEDD'} text={'#atléticas'} />
+          <ButtonElement backgroundColor={'#B5DEDD'} text={'#avisos'} onPress={() => handleFilterChange('Aviso')} />
+          <ButtonElement backgroundColor={'#A09FC3'} text={'#eventos'} onPress={() => handleFilterChange('Eventos')} />
+          <ButtonElement backgroundColor={'#DECBB5'} text={'#comodidades'} onPress={() => handleFilterChange('Comodidades')} />
+          <ButtonElement backgroundColor={'#B5DEDD'} text={'#atléticas'} onPress={() => handleFilterChange('Atletica')} />
         </Container>
       </ScrollView>
       <ScrollViewBaixo vertical={true} showsVerticalScrollIndicator={false} contentContainerStyle={{ flexDirection: 'column' }} style={{ maxHeight: 450 }}
@@ -97,19 +134,19 @@ export default function Feed() {
         <Text style={{ color: '#00345C', fontFamily: 'Poppins-Bold', fontSize: 17, marginLeft: 20, marginBottom: 10 }}>
           Recentes
         </Text>
-        {posts.length > 0 && posts.map(post => (
+        {filteredPosts.length > 0 && filteredPosts.map(post => (
           Array.isArray(post.postType) && post.postType.map(item => (
-            <Recents 
-              key={`${post.id}-${item.id}`} 
+            <Recents
+              key={`${post.id}-${item.id}`}
               status={post.status}
-              foto={item.foto} 
-              title={item.nome} 
-              id={post.id} 
+              foto={item.foto}
+              title={item.nome}
+              id={post.id}
             />
           ))
         ))}
       </ScrollViewBaixo>
-      <Menu />
+      <Menu resetFilters={resetFilters} />
     </Body>
   );
 }

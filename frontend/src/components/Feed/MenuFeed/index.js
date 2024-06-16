@@ -1,11 +1,10 @@
 import React from 'react';
-import { View } from 'react-native';
 import { Menu, HomeIcon, HamburguerIcon, Button, ButtonPost, TextPost, Icone } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { useAuth } from '../../../contexts/AuthContext';
 import { useToast } from '../../../contexts/toastContext';
 
-const MenuFeed = () => {
+const MenuFeed = ({ resetFilters }) => {
     const { user } = useAuth() || {};  // Definir user como um objeto vazio por padrão se useAuth() retornar null
     const { show } = useToast() || {};
     const navigation = useNavigation();
@@ -30,9 +29,14 @@ const MenuFeed = () => {
         }
     };
 
+    const handleHomePress = () => {
+        resetFilters();
+        navigation.navigate('Feed');
+    };
+
     return (
         <Menu>
-            <Button onPress={() => navigation.navigate('Feed')}>
+            <Button onPress={handleHomePress}>
                 <HomeIcon name="home" />
             </Button>
             <Button onPress={handlePostPress}>
