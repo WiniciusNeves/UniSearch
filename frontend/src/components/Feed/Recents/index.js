@@ -3,12 +3,14 @@ import { Text, Recentes, Retangulo, ImageView } from "./styles";
 import { Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const Recents = ({ foto, title, id , postId}) => {
+const Recents = ({ foto, title, id, postId, status }) => {
     const navigation = useNavigation();
     if (!title) {
         return <Text>Nenhum título para exibir</Text>;
     }
-
+    if (status !== 'aprovado') {
+        return null; // Retorna null se o post não estiver aprovado
+      }
     return (
         <TouchableOpacity onPress={() => navigation.navigate('Detail', { id })}>
             <Recentes>

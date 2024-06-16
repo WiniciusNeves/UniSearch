@@ -123,7 +123,7 @@ exports.createPost = async (req, res) => {
 exports.getAllPosts = async (req, res) => {
     try {
         // Busca todas as postagens gerais
-        const posts = await Post.findAll({ attributes: ['id', 'post_type', 'status', 'user_id'] });
+        const posts = await Post.findAll({ attributes: ['id', 'post_type', 'status', 'user_id',] });
 
         if (!posts || posts.length === 0) {
             return res.status(404).json({ error: 'Posts not found' });
@@ -188,7 +188,7 @@ exports.getPostById = async (req, res) => {
     const { id } = req.params;
     console.log('Received ID:', id); // Log para verificar o ID recebido
     try {
-        const user = await User.findAll({ attributes: ['id', 'username'] });
+        const user = await User.findAll({ attributes: ['id', 'username', 'role'] });
         const post = await Post.findByPk(id);
         if (!post) {
             console.log('Post not found with ID:', id); // Log quando o post não é encontrado

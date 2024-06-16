@@ -4,6 +4,7 @@ import { useRoute, useNavigation } from '@react-navigation/native';
 import { Body, ImageView, Image, Arrow, BackButton, Body2, Icones, ScrollView } from './styles';
 import api from '../../api/api';
 import Video from 'react-native-video';
+import { useAuth } from '../../contexts/AuthContext'; // Importe useAuth do contexto de autenticação
 
 const DetailScreen = () => {
   const navigation = useNavigation();
@@ -12,6 +13,7 @@ const DetailScreen = () => {
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  const { user } = useAuth(); // Use o hook useAuth para acessar o contexto de autenticação
 
   const fetchPostById = async () => {
     try {
@@ -25,15 +27,15 @@ const DetailScreen = () => {
 
   const handleRefresh = async () => {
     setRefreshing(true);
-    await fetchPostById(); // Chama a função de busca de post correta
+    await fetchPostById();
     setRefreshing(false);
   };
 
   useEffect(() => {
-    fetchPostById(); // Chama a função de busca de post quando o componente monta
+    fetchPostById();
   }, [id]);
 
-  if (!post) {
+  if (loading || !post) {
     return (
       <Body>
         <Text>Carregando...</Text>
@@ -41,12 +43,9 @@ const DetailScreen = () => {
     );
   }
 
-  const user = post.user && post.user.length > 0 ? post.user[0] : null;
-
   const handleDelete = async () => {
     try {
       await api.delete(`/deletePost/${id}`);
-      // Redefine a navegação para a tela 'Feed'
       navigation.reset({
         index: 0,
         routes: [{ name: 'Feed' }]
@@ -70,14 +69,16 @@ const DetailScreen = () => {
       </Body>
 
       <Body2>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10, paddingHorizontal: 20, position: 'absolute', right: 20, top: -40 }}>
-          <TouchableOpacity onPress={() => navigation.navigate('Edit', { id })}>
-            <Icones name="edit" size={25} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleDelete}>
-            <Icones name="delete" size={25} />
-          </TouchableOpacity>
-        </View>
+        {user?.role === 'admin' && (
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10, paddingHorizontal: 20, position: 'absolute', right: 20, top: -40 }}>
+            <TouchableOpacity onPress={() => navigation.navigate('Edit', { id })}>
+              <Icones name="edit" size={25} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={handleDelete}>
+              <Icones name="delete" size={25} />
+            </TouchableOpacity>
+          </View>
+        )}
 
         <ScrollView
           style={{ paddingHorizontal: 20 }}
@@ -90,10 +91,10 @@ const DetailScreen = () => {
             </Text>
           </View>
 
-          {user && (
+          {post.user && (
             <View style={{ flexDirection: 'row', marginTop: 10, paddingHorizontal: 20, marginLeft: 50, marginBottom: 30 }}>
               <Text style={{ fontSize: 16, color: '#19202D' }}>
-                {user.username}
+                {post.user[0].username}
               </Text>
               {post.specificPost.data_inicio && (
                 <Text style={{ fontSize: 16, marginLeft: 10, color: '#19202D' }}>

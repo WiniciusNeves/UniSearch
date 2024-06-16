@@ -4,7 +4,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native"; // Importe useNavigation do React Navigation
 import { Quadrado, AlignCircle, Circle } from "./styles"; // Importe os estilos necessários
 
-const QuadradoElement = ({ foto, titulo, dataInicio, username, userfoto, postId, userId, id }) => {
+const QuadradoElement = ({ foto, titulo, dataInicio, username, userfoto, postId, userId, id, status }) => {
   const navigation = useNavigation(); // Obtém o objeto de navegação do React Navigation
   if (postId !== userId) {
     return null;
@@ -12,6 +12,9 @@ const QuadradoElement = ({ foto, titulo, dataInicio, username, userfoto, postId,
 
   if (!foto && !titulo && !dataInicio && !username && !userfoto) {
     return <Text>Nada para exibir :(</Text>;
+  }
+  if (status !== 'aprovado') {
+    return null; // Retorna null se o post não estiver aprovado
   }
 
   return (
@@ -45,6 +48,7 @@ const QuadradoElement = ({ foto, titulo, dataInicio, username, userfoto, postId,
         </AlignCircle>
       </Quadrado>
     </TouchableOpacity>
+
   );
 };
 

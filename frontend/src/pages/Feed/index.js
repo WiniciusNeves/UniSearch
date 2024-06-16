@@ -82,6 +82,7 @@ export default function Feed() {
               Array.isArray(post.postType) && post.postType.map(item => (
                 <QuadradoElement
                   key={`${post.id}-${item.id}`}
+                  status={post.status}
                   id={post.id}
                   foto={item.foto}
                   titulo={item.nome}
@@ -100,6 +101,7 @@ export default function Feed() {
           Array.isArray(post.postType) && post.postType.map(item => (
             <Recents 
               key={`${post.id}-${item.id}`} 
+              status={post.status}
               foto={item.foto} 
               title={item.nome} 
               id={post.id} 
