@@ -32,7 +32,7 @@ export default function Feed() {
       if (response.status === 200) {
         setPosts(response.data || []);
         setFilteredPosts(response.data || []);
-        setLoading(false); 
+        setLoading(false);
       } else {
         throw new Error('Received status other than 200 when fetching posts');
       }
@@ -54,15 +54,15 @@ export default function Feed() {
     let filtered = posts;
 
     if (searchTerm !== '') {
-      filtered = filtered.filter(post => 
-        post.postType.some(item => 
+      filtered = filtered.filter(post =>
+        post.postType.some(item =>
           item.nome.toLowerCase().includes(searchTerm.toLowerCase())
         )
       );
     }
 
     if (selectedFilter !== '') {
-      filtered = filtered.filter(post => 
+      filtered = filtered.filter(post =>
         post.post_type.toLowerCase() === selectedFilter.toLowerCase()
       );
     }
@@ -89,7 +89,7 @@ export default function Feed() {
         />
       </ImageView>
       <View>
-        <Input placeholder="Clique para pesquisar..." placeholderTextColor="#A7A7A7" style={{ paddingLeft: 20, paddingRight: 70 }} onChangeText={setSearchTerm} value={searchTerm} />
+        <Input placeholder="Clique para pesquisar..." placeholderTextColor="#A7A7A7" style={{ paddingLeft: 20, paddingRight: 70, color: '#A7A7A7' }} onChangeText={setSearchTerm} value={searchTerm} />
         <SearchIcon name="search" style={{ position: 'absolute', right: 45, top: -135, color: '#35B6B4' }} />
       </View>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ flexDirection: 'row', paddingLeft: 20 }}>

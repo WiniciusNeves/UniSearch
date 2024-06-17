@@ -81,7 +81,7 @@ const DetailScreen = () => {
         )}
 
         <ScrollView
-          style={{ paddingHorizontal: 20 , position: 'relative', top: -20}}
+          style={{ paddingHorizontal: 20 }}
           vertical={true}
           refreshControl={<RefreshControl refreshing={refreshing} onRefresh={handleRefresh}/>}
         >

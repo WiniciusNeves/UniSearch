@@ -71,7 +71,7 @@ export const ScrollView = styled.ScrollView`
   max-width: ${width * .9}px;
   z-index: 1;
   max-height: ${height * 0.5}px;
-  position: absolute;
-  bottom: 0;
+  position: relative;
+  top: 20px;
 
 `
