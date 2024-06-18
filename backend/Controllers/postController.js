@@ -233,10 +233,9 @@ exports.getPostById = async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 };
-
 exports.updatePost = async (req, res) => {
     const { id } = req.params;
-    const { name, status, ...specificData } = req.body; // Assume os campos específicos vêm no corpo da requisição
+    const { name, status, ...specificData } = req.body;
 
     try {
         const post = await Post.findByPk(id);
@@ -244,16 +243,21 @@ exports.updatePost = async (req, res) => {
             return res.status(404).json({ error: 'Post not found' });
         }
 
-        // Atualiza os campos gerais da tabela Post
         await post.update({ name, status });
 
-        // Atualiza os detalhes específicos da postagem com base no tipo de postagem
         let specificPost;
+
         switch (post.post_type) {
             case 'Atletica':
                 specificPost = await Atletica.findOne({ where: { post_id: id } });
                 if (specificPost) {
-                    await specificPost.update(specificData);
+                    const fotoPath = req.files?.foto?.[0]?.path;
+                    const videoPath = req.files?.video?.[0]?.path;
+                    await specificPost.update({
+                        ...specificData,
+                        foto: fotoPath,
+                        video: videoPath,
+                    });
                 }
                 break;
             case 'Aviso':
@@ -265,13 +269,25 @@ exports.updatePost = async (req, res) => {
             case 'Comodidades':
                 specificPost = await Comodidades.findOne({ where: { post_id: id } });
                 if (specificPost) {
-                    await specificPost.update(specificData);
+                    const fotoPath = req.files?.foto?.[0]?.path;
+                    const videoPath = req.files?.video?.[0]?.path;
+                    await specificPost.update({
+                        ...specificData,
+                        foto: fotoPath,
+                        video: videoPath,
+                    });
                 }
                 break;
             case 'Eventos':
                 specificPost = await Eventos.findOne({ where: { post_id: id } });
                 if (specificPost) {
-                    await specificPost.update(specificData);
+                    const fotoPath = req.files?.foto?.[0]?.path;
+                    const videoPath = req.files?.video?.[0]?.path;
+                    await specificPost.update({
+                        ...specificData,
+                        foto: fotoPath,
+                        video: videoPath,
+                    });
                 }
                 break;
             default:
@@ -281,11 +297,12 @@ exports.updatePost = async (req, res) => {
         res.status(200).json({ message: 'Post updated successfully', specificPost });
     } catch (error) {
         console.error('API Error:', error);
+        if (error.message.includes('Cannot read properties of undefined')) {
+            return res.status(400).json({ error: 'Invalid request' });
+        }
         res.status(500).json({ error: 'Internal server error' });
     }
 };
-
-
 exports.deletePost = async (req, res) => {
     const { id } = req.params;
     try {

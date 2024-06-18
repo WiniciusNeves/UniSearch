@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, StyleSheet, Image } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import api from "../../api/api";
 import { Input } from '../Auth/styles';
 import { BackButton } from '../MenuResgister/styles';
 import { Arrow } from '../Suporte/styles';
-import { Button } from '../Load/styles';
+import { launchImageLibrary } from 'react-native-image-picker';
+import * as ImagePicker from 'react-native-image-picker';
 
 const Edit = () => {
     const navigation = useNavigation();
@@ -26,7 +27,6 @@ const Edit = () => {
     const [mediaUri, setMediaUri] = useState(null);
     const [videoUri, setVideoUri] = useState(null);
 
-
     useEffect(() => {
         const fetchPostById = async () => {
             try {
@@ -34,19 +34,20 @@ const Edit = () => {
                 const fetchedPost = response.data;
                 setPost(fetchedPost);
 
-                if (fetchedPost && fetchedPost.specificPost && fetchedPost.specificPost.nome) {
-                    setTitle(fetchedPost.specificPost.nome);
-                    setDescricao(fetchedPost.specificPost.descricao);
-                    setEmail_Contato(fetchedPost.specificPost.email_contato);
-                    setEndereco(fetchedPost.specificPost.endereco);
-                    setCidade(fetchedPost.specificPost.cidade);
-                    setCep(fetchedPost.specificPost.cep);
-                    setUf(fetchedPost.specificPost.uf);
-                    setComplemento(fetchedPost.specificPost.complemento);
-                    setDataInicio(fetchedPost.specificPost.data_inicio);
-                    setDataFim(fetchedPost.specificPost.data_fim);
-                    setMediaUri(fetchedPost.specificPost.media);
-                    setVideoUri(fetchedPost.specificPost.video);
+                if (fetchedPost && fetchedPost.specificPost) {
+                    const sp = fetchedPost.specificPost;
+                    setTitle(sp.nome || '');
+                    setDescricao(sp.descricao || '');
+                    setEmail_Contato(sp.email_contato || '');
+                    setEndereco(sp.endereco || '');
+                    setCidade(sp.cidade || '');
+                    setCep(sp.cep || '');
+                    setUf(sp.uf || '');
+                    setComplemento(sp.complemento || '');
+                    setDataInicio(sp.data_inicio || '');
+                    setDataFim(sp.data_fim || '');
+                    setMediaUri(sp.foto || null);
+                    setVideoUri(sp.video || null);
                 } else {
                     console.warn('Nome não encontrado em specificPost');
                 }
@@ -59,29 +60,87 @@ const Edit = () => {
         fetchPostById();
     }, [id]);
 
+   const pickImage = () => {
+     launchImageLibrary({ mediaType: 'photo', quality: 1 }, (response) => {
+       if (response.didCancel) {
+         console.log('User cancelled image picker');
+       } else if (response.errorCode) {
+         console.log('ImagePicker Error: ', response.errorMessage);
+       } else if (response.assets && response.assets.length > 0) {
+         setMediaUri(response.assets[0].uri);
+       }
+     });
+   };
+   
+   const pickVideo = () => {
+     launchImageLibrary({ mediaType: 'video', quality: 1 }, (response) => {
+       if (response.didCancel) {
+         console.log('User cancelled video picker');
+       } else if (response.errorCode) {
+         console.log('VideoPicker Error: ', response.errorMessage);
+       } else if (response.assets && response.assets.length > 0) {
+         setVideoUri(response.assets[0].uri);
+       }
+     });
+   };
+
     const handleUpdate = async () => {
-        try {
-            const response = await api.put(`/updatePost/${id}`, {
-                nome: title,
-                name: title,
-                descricao: descricao,
-                email_contato: email_contato,
-                endereco: endereco,
-                uf: uf,
-                complemento: complemento,
-                cidade: cidade,
-                cep: cep,
-                data_inicio: data_inicio,
-                data_fim: data_fim,
-                media: mediaUri,
-                video: videoUri
-            });
-            navigation.goBack();
-        } catch (error) {
-            console.error('Erro ao atualizar o post:', error);
-            setError(error);
+      try {
+        const formData = new FormData();
+        formData.append('nome', title);
+        formData.append('descricao', descricao);
+        formData.append('email_contato', email_contato);
+        formData.append('endereco', endereco);
+        formData.append('uf', uf);
+        formData.append('complemento', complemento);
+        formData.append('cidade', cidade);
+        formData.append('cep', cep);
+        formData.append('data_inicio', data_inicio);
+        formData.append('data_fim', data_fim);
+    
+        if (mediaUri) {
+          formData.append('foto', {
+            uri: mediaUri,
+            type: 'image/jpeg',
+            name: 'image.jpg',
+          });
         }
-    }
+        if (videoUri) {
+          formData.append('video', {
+            uri: videoUri,
+            type: 'video/mp4',
+            name: 'video.mp4',
+          });
+        }
+    
+        const response = await api.put(`/updatePost/${id}`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+    
+        if (response.status === 200) {
+          console.log('Resposta da API:', response.data);
+          navigation.navigate('Feed');
+        } else {
+          console.error('Erro na API:', response);
+        }
+      } catch (error) {
+        if (error.response) {
+          // Server responded with a status code other than 2xx
+          console.error('Erro na API:', error.response.data);
+          console.error('Status da resposta:', error.response.status);
+          console.error('Headers da resposta:', error.response.headers);
+        } else if (error.request) {
+          // No response was received
+          console.error('Nenhuma resposta recebida:', error.request);
+        } else {
+          // Error in setting up the request
+          console.error('Erro na configuração da solicitação:', error.message);
+        }
+        console.error('Configuração da solicitação:', error.config);
+      }
+    };
 
     if (error) {
         return (
@@ -120,65 +179,72 @@ const Edit = () => {
                         onChangeText={(text) => setDescricao(text)}
                         style={styles.input}
                     />
-                    {email_contato !== null && (
-                        <Input
-                            placeholder="Digite um email"
-                            placeholderTextColor="#318280"
-                            value={email_contato}
-                            onChangeText={(text) => setEmail_Contato(text)}
-                            style={styles.input}
-                        />
-                    )}
-                    {endereco !== null && (
-                        <Input
-                            placeholder="Digite um endereço"
-                            placeholderTextColor="#318280"
-                            value={endereco}
-                            onChangeText={(text) => setEndereco(text)}
-                            style={styles.input}
-                        />
-                    )}
-                    {uf !== null && (
-                        <Input
-                            placeholder="Digite uma UF"
-                            placeholderTextColor="#318280"
-                            value={uf}
-                            onChangeText={(text) => setUf(text)}
-                            style={styles.input}
-                        />
-                    )}
-                    {complemento !== null && (
-                        <Input
-                            placeholder="Digite um complemento"
-                            placeholderTextColor="#318280"
-                            value={complemento}
-                            onChangeText={(text) => setComplemento(text)}
-                            style={styles.input}
-                        />
-                    )}
-                    {data_inicio !== null && (
-                        <Input
-                            placeholder="Digite uma data de início"
-                            placeholderTextColor="#318280"
-                            value={data_inicio}
-                            onChangeText={(text) => setDataInicio(text)}
-                            style={styles.input}
-                        />
-                    )}
-                    {data_fim !== null && (
-                        <Input
-                            placeholder="Digite uma data de fim"
-                            placeholderTextColor="#318280"
-                            value={data_fim}
-                            onChangeText={(text) => setDataFim(text)}
-                            style={styles.input}
-                        />
-                    )}
-
-
-
+                    <Input
+                        placeholder="Digite um email"
+                        placeholderTextColor="#318280"
+                        value={email_contato}
+                        onChangeText={(text) => setEmail_Contato(text)}
+                        style={styles.input}
+                    />
+                    <Input
+                        placeholder="Digite um endereço"
+                        placeholderTextColor="#318280"
+                        value={endereco}
+                        onChangeText={(text) => setEndereco(text)}
+                        style={styles.input}
+                    />
+                    <Input
+                        placeholder="Digite uma cidade"
+                        placeholderTextColor="#318280"
+                        value={cidade}
+                        onChangeText={(text) => setCidade(text)}
+                        style={styles.input}
+                    />
+                    <Input
+                        placeholder="Digite um CEP"
+                        placeholderTextColor="#318280"
+                        value={cep}
+                        onChangeText={(text) => setCep(text)}
+                        style={styles.input}
+                    />
+                    <Input
+                        placeholder="Digite uma UF"
+                        placeholderTextColor="#318280"
+                        value={uf}
+                        onChangeText={(text) => setUf(text)}
+                        style={styles.input}
+                    />
+                    <Input
+                        placeholder="Digite um complemento"
+                        placeholderTextColor="#318280"
+                        value={complemento}
+                        onChangeText={(text) => setComplemento(text)}
+                        style={styles.input}
+                    />
+                    <Input
+                        placeholder="Digite uma data de início"
+                        placeholderTextColor="#318280"
+                        value={data_inicio}
+                        onChangeText={(text) => setDataInicio(text)}
+                        style={styles.input}
+                    />
+                    <Input
+                        placeholder="Digite uma data de fim"
+                        placeholderTextColor="#318280"
+                        value={data_fim}
+                        onChangeText={(text) => setDataFim(text)}
+                        style={styles.input}
+                    />
+                    <TouchableOpacity onPress={pickImage} style={styles.button}>
+                      <Text style={styles.buttonText}>Selecionar Imagem</Text>
+                    </TouchableOpacity>
+                    {mediaUri && <Image source={{ uri: mediaUri }} style={styles.mediaPreview} />}
+                    <TouchableOpacity onPress={pickVideo} style={styles.button}>
+                      <Text style={styles.buttonText}>Selecionar Vídeo</Text>
+                    </TouchableOpacity>
+                    {videoUri && <Text source={{ uri: videoUri }} style={styles.videoPreview} />}
                     <TouchableOpacity onPress={handleUpdate} style={styles.button}>
-                        <Text style={styles.buttonText}>Atualizar Postagem</Text>
+                      <Text style={styles.buttonText}>Atualizar Postagem</Text>
                     </TouchableOpacity>
                 </View>
             </ScrollView>
@@ -212,6 +278,11 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         color: '#19202D',
+    },
+    mediaPreview: {
+        marginTop: 10,
+        width: 100,
+        height: 100,
     },
 });
 

@@ -103,17 +103,17 @@ const Atletica = () => {
                 console.log('Resposta da API:', response.data);
                 navigation.navigate('Feed');
             } else {
-                console.error('Erro na API:', response);
+                const errorMessage = response.data?.error || 'File upload failed';
+                console.error('Erro na API:', errorMessage);
                 toastError();
                 console.log('Dados do FormData:', formData);
-
             }
         } catch (error) {
-            console.error('Erro na API:', error);
+            const errorMessage = error.response?.data?.error || 'File upload failed';
+            console.error('Erro na API:', errorMessage);
             toastError();
         }
     };
-
     return (
         <>
             <Body>
