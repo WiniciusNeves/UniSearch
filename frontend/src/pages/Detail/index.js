@@ -83,9 +83,9 @@ const DetailScreen = () => {
         <ScrollView
           style={{ paddingHorizontal: 20 }}
           vertical={true}
-          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={handleRefresh}/>}
+          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />}
         >
-          <View style={{ marginTop: 40, paddingHorizontal: 20  }}>
+          <View style={{ marginTop: 40, paddingHorizontal: 20 }}>
             <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#19202D', textAlign: 'center' }}>
               {post.specificPost.nome}
             </Text>
@@ -94,7 +94,7 @@ const DetailScreen = () => {
           {post.user && (
             <View style={{ flexDirection: 'row', marginTop: 10, paddingHorizontal: 20, marginLeft: 50, marginBottom: 30 }}>
               <Text style={{ fontSize: 16, color: '#19202D' }}>
-                {post.user[0].username}
+                Por: {post.user[0].username}
               </Text>
               {post.specificPost.data_inicio && (
                 <Text style={{ fontSize: 16, marginLeft: 10, color: '#19202D' }}>
@@ -104,7 +104,7 @@ const DetailScreen = () => {
             </View>
           )}
 
-          <View>
+          <View style={{ paddingHorizontal: 20}}>
             <Text style={{ fontSize: 16, color: '#19202D' }}>
               {post.specificPost.descricao}
             </Text>
